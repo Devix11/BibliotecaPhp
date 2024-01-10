@@ -16,6 +16,46 @@ session_start();
     die("Connessione fallita: " . mysqli_connect_error());
     }
 
+    //controllo del tipo di account in modo da utilizzare i due diversi database
+    if ($_POST['profile_type'] == "admin") {
+        // L'utente è un admin
+        //Controllo credenziali nel database amministratori
+        $query = "SELECT * FROM amministratori WHERE email = '$email'";
+        $result = mysqli_query($db, $query);
+        $query = "SELECT * FROM amministratori WHERE password = '$password'";
+        $result = mysqli_query($db, $query);
+        
+        if($result1 or $result2 = 0){
+            $errors['email'] = "Email non valida";
+            $errors['password'] = "Password non valida";
+        } else if ($result1 & $result2 = 1){
+            header("Location: dashboard_admin.php");
+            exit();
+        }
+
+    } else {
+        // L'utente è un utente normale
+        //controllo database utenti_registrati
+
+        $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
+        $result = mysqli_query($db, $query);
+        $query = "SELECT * FROM utenti_registrati WHERE password = '$password'";
+        $result = mysqli_query($db, $query);
+
+        if($result1 or $result2 = 0){
+            $errors['email'] = "Email non valida";
+            $errors['password'] = "Password non valida";
+        } else if ($result1 & $result2 = 1){
+            header("Location: dashboard_user.php");
+            exit();
+        }
+    }
+
+
+
+
+
+/*
     //Verifica delle credenziali
     //verifica email
         $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -45,6 +85,7 @@ session_start();
         /*$query = "SELECT * FROM utenti_registrati WHERE email = '$email' AND admin = 1";
         $result = mysqli_query($db, $query);*/
         //check tramite la checkbox metodo post al volo per provare
+        /*
         if ($_POST['profile_type'] == "admin") {
             header("Location: dashboard_admin.php");
             exit();
@@ -62,9 +103,9 @@ session_start();
             exit();
         }*/
             
-    } else {
+ /*else {
         // Autenticazione fallita
         $errors['password'] = "Credenziali non valide";
-    }
+    }*/
 
 ?>
