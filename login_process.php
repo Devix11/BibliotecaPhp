@@ -40,12 +40,23 @@ session_start();
             $query = "INSERT INTO auth_tokens (user_id, token_hash, expires) VALUES ('$user_id', '$token_hash', '$expires')";
             mysqli_query($db, $query);
         }*/
+
+        //check se è un account admin o utente
+        $query = "SELECT * FROM utenti_registrati WHERE email = '$email' AND admin = 1";
+        $result = mysqli_query($db, $query);
+        if (mysqli_num_rows($result) == 1) {
+            // L'utente è un admin
+            header("Location: dashboard_admin.php");
+            exit();
+        } else {
+            // L'utente è un utente normale
+            header("Location: dashboard_user.php");
+            exit();
+        }
+            
     } else {
         // Autenticazione fallita
         $errors['password'] = "Credenziali non valide";
     }
-
-    header("Location: hompage.php");
-    exit();
 
 ?>
