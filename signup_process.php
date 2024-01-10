@@ -9,7 +9,7 @@
 <button onclick="location.href='homepage.php'">Go back to homepage</button>
 <?php
             // Stabilire la connessione al database
-            $db = mysqli_connect('localhost:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
+            $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
             // Verificare la connessione
             if (!$db) {
                 die("Connessione fallita: " . mysqli_connect_error());
