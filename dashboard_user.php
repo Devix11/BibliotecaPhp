@@ -3,7 +3,7 @@
 session_start();
 // Fine: ed8c6549bwf9
 // FILEPATH: /dashboard_user.php
-$db = mysqli_connect('localhosy:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
+$db = mysqli_connect('localhost:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
 // Funzionalità di logout
 function logout()
 {

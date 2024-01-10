@@ -6,6 +6,7 @@
     <title>Registration</title>
 </head>
 <body>
+<button onclick="location.href='homepage.php'">Go back to homepage</button>
 <?php
             // Stabilire la connessione al database
             $db = mysqli_connect('localhosy:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
