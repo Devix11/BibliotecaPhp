@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
+    <title>Registration</title>
 </head>
 <body>
 <?php
@@ -26,7 +26,7 @@
 
                 $query = "SELECT id FROM utenti_registrati WHERE email = '$email';"
                 if (mysqli_query($db, $query) != NULL){
-                    echo "Utente già esistente!"
+                    die("Errore: Utente gia' esistente!");
                 }
             }
             //Values security-check
@@ -42,6 +42,8 @@
             //Query to insert data
             $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ('$name', '$surname', '$email', '$hash', '$timestamp')";
             mysqli_query($db, $query);
+
+
 
          ?>
         </body>

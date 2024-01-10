@@ -1,4 +1,6 @@
 <?php
+// Inizializzazione della sessione
+session_start();
 // Fine: ed8c6549bwf9
 // FILEPATH: /dashboard_user.php
 $db = mysqli_connect('localhosy:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
@@ -147,4 +149,6 @@ function returnBookAndReview($bookId, $review)
     <input type="text" name="review" placeholder="Enter review">
     <input type="submit" name="returnBookAndReview" value="Return a book and leave a review">
 </form>
+</body>
+</html>
 
