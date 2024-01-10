@@ -42,8 +42,16 @@ session_start();
         }*/
 
         //check se è un account admin o utente
-        $query = "SELECT * FROM utenti_registrati WHERE email = '$email' AND admin = 1";
-        $result = mysqli_query($db, $query);
+        /*$query = "SELECT * FROM utenti_registrati WHERE email = '$email' AND admin = 1";
+        $result = mysqli_query($db, $query);*/
+        //check tramite la checkbox metodo post al volo per provare
+        if ($_POST['profile_type'] == "admin") {
+            header("Location: dashboard_admin.php");
+            exit();
+        } else {
+            header("Location: dashboard_user.php");
+            exit();
+        }/*
         if (mysqli_num_rows($result) == 1) {
             // L'utente è un admin
             header("Location: dashboard_admin.php");
@@ -52,7 +60,7 @@ session_start();
             // L'utente è un utente normale
             header("Location: dashboard_user.php");
             exit();
-        }
+        }*/
             
     } else {
         // Autenticazione fallita
