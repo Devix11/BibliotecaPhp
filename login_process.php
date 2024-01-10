@@ -28,6 +28,8 @@ session_start();
         }
     }
 
+    checkemail();
+
     function checkpass(){
     if (password_verify($_POST['password'], $user['password'])) {
         // Autenticazione riuscita
@@ -48,6 +50,8 @@ session_start();
         $errors['password'] = "Credenziali non valide";
     }
 }
+
+checkpass();
 
     header("Location: hompage.php");
     exit();
