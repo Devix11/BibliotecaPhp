@@ -18,7 +18,6 @@ session_start();
 
     //Verifica delle credenziali
     //verifica email
-    function checkemail(){
         $email = mysqli_real_escape_string($db, $_POST['email']);
         $query = "SELECT * FROM utenti_registrati WHERE email='$email'";
         $result = mysqli_query($db, $query);
@@ -26,11 +25,7 @@ session_start();
         if (mysqli_num_rows($result) == 0) {
             $errors['email'] = "Email non valida";
         }
-    }
 
-    checkemail();
-
-    function checkpass(){
     if (password_verify($_POST['password'], $user['password'])) {
         // Autenticazione riuscita
         $_SESSION['user_id'] = $user['id'];
@@ -49,9 +44,6 @@ session_start();
         // Autenticazione fallita
         $errors['password'] = "Credenziali non valide";
     }
-}
-
-checkpass();
 
     header("Location: hompage.php");
     exit();
