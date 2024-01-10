@@ -18,9 +18,23 @@
     </head>
     <body>
         <h1>Login</h1>
+        <!--
+        Sezione di select per il tipo di profilo, user o admin
+        -->
+        <label>Tipo di profilo:
+            <select name="profile_type">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </label>
+
         <form action="login_process.php" method="post">
             <label>Email: <input type="text" name="email" required></label><br>
             <label>Password: <input type="password" name="password" required></label><br>
+            <label>
+                <input type="checkbox" name="remember_me"> Remember Me
+            </label><br>
+
             <button type="submit">Accedi</button>
         </form>
     </body>
