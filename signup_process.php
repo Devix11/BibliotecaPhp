@@ -31,17 +31,13 @@
                 }
             }
             //Values security-check
-            $nm = htmlentities($_POST['name']);
-            $name = Strip_tags($nm);
+            $name = Strip_tags(htmlentities($_POST['name']));
 
-            $surn = htmlentities($_POST['surname']);
-            $surname = Strip_tags($surn);
+            $surname = Strip_tags(htmlentities($_POST['surname']));
 
-            $ma = htmlentities($_POST['email']);
-            $email = Strip_tags($ma);
+            $email = Strip_tags(htmlentities($_POST['email']));
 
-            $pass = htmlentities($_POST['password']);
-            $password = Strip_tags($pass);
+            $password = Strip_tags(htmlentities($_POST['password']));
 
             $timestamp = time();
             
