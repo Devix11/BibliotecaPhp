@@ -9,7 +9,7 @@ session_start();
     $_SESSION['user_id'] = $user_id; // Imposta l'ID dell'utente in sessione
     // Salvo le credenziali del db nella variabile $db
     // Stabilire la connessione al database
-    $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
+    $db = mysqli_connect('localhost:3399', 'phpmyadmin', 'ciaone11!', 'biblioteca');
 
     // Verificare la connessione
     if (!$db) {
