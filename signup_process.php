@@ -6,7 +6,7 @@
     <title>Registration</title>
 </head>
 <body>
-<button onclick="location.href='homepage.php'">Go back to homepage</button>
+<button onclick="location.href='hompage.php'">Go back to homepage</button>
 <?php
             // Stabilire la connessione al database
             $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
@@ -27,39 +27,45 @@
 
                 $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
                 if (mysqli_num_rows(mysqli_query($db, $query)) > 0){
-                    echo "Errore: Utente gia' esistente!" ;
+                    die("Errore: Utente gia' esistente!");
                 }
             }
             //Values security-check
-            $name = Strip_tags(htmlentities($_POST['name']));
-
-            $surname = Strip_tags(htmlentities($_POST['surname']));
-
-            $email = Strip_tags(htmlentities($_POST['email']));
-
-            $password = Strip_tags(htmlentities($_POST['password']));
-
+            $name = strip_tags(htmlentities($_POST['name']));
+            $surname = strip_tags(htmlentities($_POST['surname']));
+            $email = strip_tags(htmlentities($_POST['email']));
+            $password = strip_tags(htmlentities($_POST['password']));
             $timestamp = time();
             
-            //Password to hash
+            // Password to hash
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
-            //Query to insert data
-            $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ($name, $surname, $email, $hash, $timestamp)";
-
-            if(mysqli_query($conn, $query)){  
-
-                echo "Utente registrato correttamente";  
-               
-               }else{  
-               
-               echo "Error: ". mysqli_error($conn);  
-               
-               }  
-               
-               mysqli_close($conn);  
-
-
+            // Prepare an SQL statement for execution
+            $stmt = mysqli_prepare($db, "INSERT INTO utenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES (?, ?, ?, ?, ?)");
+            
+            if ($stmt === false) {
+                // Handle errors in statement preparation
+                echo "Error preparing statement: ". mysqli_error($db);
+                exit;
+            }
+            
+            // Bind parameters to the prepared statement
+            mysqli_stmt_bind_param($stmt, 'ssssi', $name, $surname, $email, $hash, $timestamp);
+            
+            // Execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                echo "Utente registrato correttamente";
+            } else {
+                // Handle errors in statement execution
+                echo "Error executing statement: ". mysqli_stmt_error($stmt);
+            }
+            
+            // Close the prepared statement
+            mysqli_stmt_close($stmt);
+            
+            // Close the database connection
+            mysqli_close($db);
+            
 
          ?>
         </body>
