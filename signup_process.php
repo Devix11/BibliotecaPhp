@@ -25,8 +25,8 @@
                     //die è una funzione che termina l'esecuzione dello script
                     die("Errore: dati mancanti");
 
-                $query = "SELECT * FROM utenti_registrati WHERE email = '$email';"
-                if (mysqli_query($db, $query) != false){
+                $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
+                if (mysqli_num_rows(mysqli_query($db, $query)) > 0){
                     die("Errore: Utente gia' esistente!");
                 }
             }
