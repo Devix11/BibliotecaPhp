@@ -46,16 +46,18 @@
             
             //Query to insert data
             $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ($name, $surname, $email, $hash, $timestamp)";
-            $stmt = mysqli_prepare($db, $query);
 
-            if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "sssss", $name, $surname, $email, $hash, $timestamp);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_close($stmt);
-            } else {
-                // Handle query preparation error
-                echo "ERROR";
-            }       
+            if(mysqli_query($conn, $query)){  
+
+                echo "Utente registrato correttamente";  
+               
+               }else{  
+               
+               echo "Error: ". mysqli_error($conn);  
+               
+               }  
+               
+               mysqli_close($conn);  
 
 
 
