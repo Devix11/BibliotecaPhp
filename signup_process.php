@@ -45,7 +45,7 @@
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
             //Query to insert data
-            $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ($name, $surname, $email, $hash, $timestamp)";
             $stmt = mysqli_prepare($db, $query);
 
             if ($stmt) {
