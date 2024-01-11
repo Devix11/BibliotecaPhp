@@ -8,9 +8,10 @@
 <body>
 <button onclick="location.href='hompage.php'">Go back to homepage</button>
 <?php
-            // Stabilire la connessione al database
+            
+            // Connection to the database
             $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
-            // Verificare la connessione
+            // Verify the connection
             if (!$db) {
                 die("Connessione fallita: " . mysqli_connect_error());
             }
@@ -50,6 +51,7 @@
             }
             
             // Bind parameters to the prepared statement
+            // "ssssi" stands for the parameters types (String, String, String, String, Integer)
             mysqli_stmt_bind_param($stmt, 'ssssi', $name, $surname, $email, $hash, $timestamp);
             
             // Execute the prepared statement
@@ -65,8 +67,6 @@
             
             // Close the database connection
             mysqli_close($db);
-            
-
          ?>
         </body>
     </html>
