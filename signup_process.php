@@ -27,7 +27,7 @@
 
                 $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
                 if (mysqli_num_rows(mysqli_query($db, $query)) > 0){
-                    die("Errore: Utente gia' esistente!");
+                    echo "Errore: Utente gia' esistente!" ;
                 }
             }
             //Values security-check
@@ -45,8 +45,17 @@
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
             //Query to insert data
-            $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ('$name', '$surname', '$email', '$hash', '$timestamp')";
-            mysqli_query($db, $query);
+            $query = "INSERT INTO untenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES (?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($db, $query);
+
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, "sssss", $name, $surname, $email, $hash, $timestamp);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+            } else {
+                // Handle query preparation error
+                echo "ERROR";
+            }       
 
 
 
