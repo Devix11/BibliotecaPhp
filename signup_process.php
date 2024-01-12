@@ -13,7 +13,7 @@
             $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
             // Verify the connection
             if (!$db) {
-                die("Connessione fallita: " . mysqli_connect_error());
+                exit("Connessione fallita: " . mysqli_connect_error());
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,11 +24,11 @@
                     empty($_POST['password'])
                 ) 
                     //die è una funzione che termina l'esecuzione dello script
-                    die("Errore: dati mancanti");
+                    exit("Errore: dati mancanti");
 
                 $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
                 if (mysqli_num_rows(mysqli_query($db, $query)) > 0){
-                    die("Errore: Utente gia' esistente!");
+                    exit("Errore: Utente gia' esistente!");
                 }
             }
             //Values security-check
@@ -47,7 +47,7 @@
             if ($stmt === false) {
                 // Handle errors in statement preparation
                 echo "Error preparing statement: ". mysqli_error($db);
-                exit;
+                exit();
             }
             
             // Bind parameters to the prepared statement
@@ -57,9 +57,11 @@
             // Execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 echo "Utente registrato correttamente";
+                exit();
             } else {
                 // Handle errors in statement execution
                 echo "Error executing statement: ". mysqli_stmt_error($stmt);
+                exit();
             }
             
             // Close the prepared statement

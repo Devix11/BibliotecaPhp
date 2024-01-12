@@ -13,36 +13,95 @@ session_start();
 
     // Verificare la connessione
     if (!$db) {
-    die("Connessione fallita: " . mysqli_connect_error());
+    exit("Connessione fallita: " . mysqli_connect_error());
     }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (
+            empty($_POST['email']) || 
+            empty($_POST['password'])
+        ) 
+            //die è una funzione che termina l'esecuzione dello script
+            exit("Errore: dati mancanti");
+    }
+
+    //Values security-check
+    $email = strip_tags(htmlentities($_POST['email']));
+    $password = strip_tags(htmlentities($_POST['password']));
+    
+    // Password to hash
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
     //controllo del tipo di account in modo da utilizzare i due diversi database
     if ($_POST['profile_type'] == "admin") {
         // L'utente è un admin
-        //Controllo credenziali nel database amministratori
-        $query = "SELECT * FROM amministratori WHERE email = '$email' AND password = '$password'";
-        $result = mysqli_query($db, $query);
+        //Controllo credenziali nel database amministratori - Ricorda che sul db i nostri utenti hanno password senza hash
+        (
+        // Prepare an SQL statement for execution
+        $stmt = mysqli_prepare($db, "SELECT * FROM amministratori WHERE email = ? AND password = ?");
+            
+        if ($stmt === false) {
+            // Handle errors in statement preparation
+            echo "Error preparing statement: ". mysqli_error($db);
+            exit;
+        }
         
+        // Bind parameters to the prepared statement
+        // "ss" stands for the parameters types (String, String)
+        mysqli_stmt_bind_param($stmt, 'ss', $email, $hash);
+        
+        // Execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: dashboard_admin.php");
+            exit();
+        } else {
+            // Handle errors in statement execution
+            echo "Email o password non valide: ". mysqli_stmt_error($stmt);
+        })
+
+        /*
         if($result = 0){
-            $errors['email'] = "Email o Password non valide";
+           $errors['email'] = "Email o Password non valide";
         } else if ($result = 1){
             header("Location: dashboard_admin.php");
             exit();
         }
+        **/
 
     } else {
         // L'utente è un utente normale
         //controllo database utenti_registrati
 
-        $query = "SELECT * FROM utenti_registrati WHERE email = '$email' AND password = '$password'";
-        $result = mysqli_query($db, $query);
-
+        (
+            // Prepare an SQL statement for execution
+            $stmt = mysqli_prepare($db, "SELECT * FROM utenti_registrati WHERE email = ? AND password = ?");
+                
+            if ($stmt === false) {
+                // Handle errors in statement preparation
+                echo "Error preparing statement: ". mysqli_error($db);
+                exit;
+            }
+            
+            // Bind parameters to the prepared statement
+            // "ss" stands for the parameters types (String, String)
+            mysqli_stmt_bind_param($stmt, 'ss', $email, $hash);
+            
+            // Execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                header("Location: dashboard_user.php");
+                exit();
+            } else {
+                // Handle errors in statement execution
+                echo "Email o password non valide: ". mysqli_stmt_error($stmt);
+            })
+        /*
         if($result = 0){
             $errors['email'] = "Email o Password non valide";
         } else if ($result = 1){
             header("Location: dashboard_user.php");
-            exit();
+           exit();
         }
+        **/
     }
 
 
