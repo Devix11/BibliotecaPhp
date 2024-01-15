@@ -19,7 +19,8 @@ session_start();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (
             empty($_POST['email']) || 
-            empty($_POST['password'])
+            empty($_POST['password']) ||
+            empty($_POST['profile_type'])
         ) 
             //die è una funzione che termina l'esecuzione dello script
             exit("Errore: dati mancanti");
@@ -38,7 +39,7 @@ session_start();
         //Controllo credenziali nel database amministratori - Ricorda che sul db i nostri utenti hanno password senza hash
         (
         // Prepare an SQL statement for execution
-        $stmt = mysqli_prepare($db, "SELECT * FROM amministratori WHERE email = ? AND password = ?");
+        $stmt = mysqli_prepare($db, "SELECT * FROM utenti_registrati WHERE email = ? AND adm = ?");
             
         if ($stmt === false) {
             // Handle errors in statement preparation
@@ -48,11 +49,11 @@ session_start();
         
         // Bind parameters to the prepared statement
         // "ss" stands for the parameters types (String, String)
-        mysqli_stmt_bind_param($stmt, 'ss', $email, $hash);
+        mysqli_stmt_bind_param($stmt, 'sb', $email, true);
         
         // Execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: dashboard_admin.php");
+            verify($password, $email, "Location: dashboard_admin.php");
             exit();
         } else {
             // Handle errors in statement execution
@@ -74,7 +75,7 @@ session_start();
 
         (
             // Prepare an SQL statement for execution
-            $stmt = mysqli_prepare($db, "SELECT * FROM utenti_registrati WHERE email = ? AND password = ?");
+            $stmt = mysqli_prepare($db, "SELECT * FROM utenti_registrati WHERE email = ? AND adm = ?");
                 
             if ($stmt === false) {
                 // Handle errors in statement preparation
@@ -84,11 +85,11 @@ session_start();
             
             // Bind parameters to the prepared statement
             // "ss" stands for the parameters types (String, String)
-            mysqli_stmt_bind_param($stmt, 'ss', $email, $hash);
+            mysqli_stmt_bind_param($stmt, 'sb', $email, false);
             
             // Execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: dashboard_user.php");
+                verify($password, $email, "Location: dashboard_user.php");
                 exit();
             } else {
                 // Handle errors in statement execution
@@ -161,4 +162,45 @@ session_start();
         $errors['password'] = "Credenziali non valide";
     }*/
 
+    
+        function verify($password, $email, $dashboard){
+        
+            // Prepare the statement to retrieve the hashed password
+            $stmt = mysqli_prepare($db, "SELECT password FROM utenti_registrati WHERE email = ?");
+            
+            if ($stmt === false) {
+                // Handle errors in statement preparation
+                echo "Error preparing statement: " . mysqli_error($db);
+                exit;
+            }
+            
+            // Bind parameters to the prepared statement
+            mysqli_stmt_bind_param($stmt, 's', $email);
+            
+            // Execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Bind the result
+                mysqli_stmt_bind_result($stmt, $hashedPassword);
+                
+                // Fetch the result
+                mysqli_stmt_fetch($stmt);
+                
+                // Verify the provided password against the hashed password
+                if (password_verify($password, $hashedPassword)) {
+                    // Password is valid, redirect to dashboard_user.php
+                    header($dashboard);
+                    exit();
+                } else {
+                    // Handle invalid password
+                    echo "Email o password non valide.";
+                    
+                }
+            } else {
+                // Handle errors in statement execution
+                echo "Error executing statement: " . mysqli_stmt_error($stmt);
+            }
+        }
+        
+
+    
 ?>
