@@ -41,6 +41,15 @@
             // Password to hash
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
+            if(mysqli_query($db, "INSERT INTO utenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES ($name, $surname, $email, $hash, $timestamp)")){
+                echo "Utente registrato correttamente";
+                exit();
+            } else {
+                echo "Errore!";
+                exit();
+            }
+
+            /*
             // Prepare an SQL statement for execution
             $stmt = mysqli_prepare($db, "INSERT INTO utenti_registrati (nome, cognome, email, password, dataRegistrazione) VALUES (?, ?, ?, ?, ?)");
             
@@ -66,7 +75,7 @@
             
             // Close the prepared statement
             mysqli_stmt_close($stmt);
-            
+            **/
             // Close the database connection
             mysqli_close($db);
          ?>
