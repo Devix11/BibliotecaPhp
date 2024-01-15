@@ -6,7 +6,7 @@
     <title>Registration</title>
 </head>
 <body>
-<button onclick="location.href='hompage.php'">Go back to homepage</button>
+<button onclick="location.href='homepage.php'">Go back to homepage</button>
 <?php
             
             // Connection to the database
