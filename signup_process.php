@@ -10,7 +10,7 @@
 <?php
             
             // Connection to the database
-            $db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
+            $db = mysqli_connect('localhost:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
             // Verify the connection
             if (!$db) {
                 exit("Connessione fallita: " . mysqli_connect_error());
