@@ -14,6 +14,8 @@
             // Verify the connection
             if (!$db) {
                 exit("Connessione fallita: " . mysqli_connect_error());
+            } else {
+                echo ("Connessione avvenuta con successo");
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
