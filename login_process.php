@@ -1,55 +1,72 @@
 <?php
-    // Inizializza la sessione
-session_start();
+// Establish a database connection
+$db = mysqli_connect('localhost', 'root', '', 'biblioteca');
 
-    // Verifica delle credenziali e autenticazione
-    // Utilizza password_verify per verificare la password hash
+// Check the database connection
+if (!$db) {
+    exit("Connessione fallita: " . mysqli_connect_error());
+}
 
-    // Se l'autenticazione è riuscita
-    $_SESSION['user_id'] = $user_id; // Imposta l'ID dell'utente in sessione
-    // Salvo le credenziali del db nella variabile $db
-    // Stabilire la connessione al database
-    $db = mysqli_connect('localhosy:3306', 'phpmyadmin', 'ciaone11!', 'biblioteca');
-
-    // Verificare la connessione
-    if (!$db) {
-    die("Connessione fallita: " . mysqli_connect_error());
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST['email']) || empty($_POST['password'])) {
+        // die() is a function that terminates script execution
+        exit("Errore: dati mancanti");
     }
 
-    //Verifica delle credenziali
-    //verifica email
-    function checkemail(){
-        $email = mysqli_real_escape_string($db, $_POST['email']);
-        $query = "SELECT * FROM utenti_registrati WHERE email='$email'";
-        $result = mysqli_query($db, $query);
-        $user = mysqli_fetch_assoc($result);
-        if (mysqli_num_rows($result) == 0) {
-            $errors['email'] = "Email non valida";
-        }
-    }
+    // Values security-check
+    $email = strip_tags($_POST['email']);
+    $password = $_POST['password'];
 
-    function checkpass(){
-    if (password_verify($_POST['password'], $user['password'])) {
-        // Autenticazione riuscita
-        $_SESSION['user_id'] = $user['id'];
-        /*if (isset($_POST['remember_me'])) {
-            // Imposta un cookie per ricordare l'utente
-            setcookie('remember_user', $user['id'], time() + (86400 * 30), "/"); // Imposta un cookie che scade dopo 30 giorni
+    // Password hashing
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
-            // Salva il token di autenticazione nel database
-            $token = bin2hex(random_bytes(64));
-            $token_hash = password_hash($token, PASSWORD_DEFAULT);
-            $expires = date('Y-m-d H:i:s', time() + (86400 * 30)); // Imposta la data di scadenza a 30 giorni dal momento attuale
-            $query = "INSERT INTO auth_tokens (user_id, token_hash, expires) VALUES ('$user_id', '$token_hash', '$expires')";
-            mysqli_query($db, $query);
-        }*/
+    $profile_type = $_POST['profile_type'];
+
+    if ($profile_type == "admin") {
+        verify($db, $email, $password, "admin");
     } else {
-        // Autenticazione fallita
-        $errors['password'] = "Credenziali non valide";
+        verify($db, $email, $password, "user");
     }
 }
 
-    header("Location: hompage.php");
-    exit();
+// Function to verify and redirect
+function verify($db, $email, $password, $profile_type) {
+    // Prepare the statement to retrieve the hashed password and profile type
+    $stmt = mysqli_prepare($db, "SELECT password, adm FROM utenti_registrati WHERE email = ?");
 
+    if ($stmt === false) {
+        // Handle errors in statement preparation
+        echo "Error preparing statement: " . mysqli_error($db);
+        exit;
+    }
+
+    // Bind parameters to the prepared statement
+    mysqli_stmt_bind_param($stmt, 's', $email);
+
+    // Execute the prepared statement
+    if (mysqli_stmt_execute($stmt)) {
+        // Bind the result
+        mysqli_stmt_bind_result($stmt, $hashedPassword, $storedProfileType);
+
+        // Fetch the result
+        mysqli_stmt_fetch($stmt);
+
+        // Verify the provided password against the hashed password and check the profile type
+        if (password_verify($password, $hashedPassword) && $storedProfileType === $profile_type) {
+            // Password is valid and profile type matches, redirect to the appropriate dashboard
+            if ($profile_type == "admin") {
+                header("Location: dashboard_admin.php");
+            } else {
+                header("Location: dashboard_user.php");
+            }
+            exit();
+        } else {
+            // Handle invalid email, password, or profile type
+            echo "Informazioni inserite non valide. ( Email, password o tipo di utente )";
+        }
+    } else {
+        // Handle errors in statement execution
+        echo "Error executing statement: " . mysqli_stmt_error($stmt);
+    }
+}
 ?>
