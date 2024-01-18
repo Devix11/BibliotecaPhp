@@ -12,8 +12,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
         <title>Login</title>
     </head>
     <body>
@@ -23,15 +24,15 @@
         -->
         
 
-        <form action="login_process.php" method="post">
+        <form action="login_process.php" class="form" method="post">
             <label>Tipo di profilo:
             <select name="profile_type">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
         </label><br>
-            <label>Email: <input type="text" name="email" required></label><br>
-            <label>Password: <input type="password" name="password" required></label><br>
+            <label>Email: <br><input type="text" name="email" required></label><br>
+            <label>Password: <br><input type="password" name="password" required></label><br>
             <label>
                 <input type="checkbox" name="remember_me"> Remember Me
             </label><br>

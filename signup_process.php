@@ -6,14 +6,13 @@
     <title>Registration</title>
 </head>
 <body>
-<button onclick="location.href='homepage.php'">Go back to homepage</button>
 <?php
             
-            // Connection to the database
+            // Stabilisco la connessione col database
             $db = mysqli_connect('localhost', 'root', '', 'biblioteca');
-            // Verify the connection
+            // Controllo la validità della connessione
             if (!$db) {
-                exit("Connessione fallita: " . mysqli_connect_error());
+                exit("<br><h3 style='color:Tomato;'>Connessione fallita: " . mysqli_connect_error() . "</h3>");
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,53 +22,53 @@
                     empty($_POST['email']) || 
                     empty($_POST['password'])
                 ) 
-                    //die è una funzione che termina l'esecuzione dello script
-                    exit("Errore: dati mancanti");
+                    exit("<br><h3 style='color:Tomato;'>Errore: dati mancanti!</h3>");
 
                 
             }
-            //Values security-check
+            // Pulisco i valori in ingresso
             $name = strip_tags(htmlentities($_POST['name']));
             $surname = strip_tags(htmlentities($_POST['surname']));
             $email = strip_tags(htmlentities($_POST['email']));
             $password = strip_tags(htmlentities($_POST['password']));
             $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
                 if (mysqli_num_rows(mysqli_query($db, $query)) > 0){
-                    exit("<br><h1>Errore: Utente gia' esistente!</h1>");
+                    exit("<br><h3 style='color:Tomato;'>Errore: Utente gia' esistente!</h3>");
                 }
             
-            // Password to hash
+            // Cripto la password prima di salvarla nel database
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
 
-            // Prepare an SQL statement for execution
+            // Preparo la dichiarazione per ottenere la password criptata e il tipo di account
             $stmt = mysqli_prepare($db, "INSERT INTO utenti_registrati (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
             
             if ($stmt === false) {
-                // Handle errors in statement preparation
-                echo "Error preparing statement: ". mysqli_error($db);
+                // Gestisco gli errori nella dichiarazione
+                echo "<br><h3 style='color:Tomato;'>Error preparing statement: ". mysqli_error($db) . "</h3>";
                 exit();
             }
             
-            // Bind parameters to the prepared statement
-            // "ssssi" stands for the parameters types (String, String, String, String, Integer)
+            // Lego i parametri alla dichiarazione precedente
+            // "ssssi" sta per i tipi di parametri (String, String, String, String, Integer)
             mysqli_stmt_bind_param($stmt, 'ssss', $name, $surname, $email, $hash);
             
-            // Execute the prepared statement
+            // Eseguo la dichiarazione
             if (mysqli_stmt_execute($stmt)) {
-                echo "<br><h1>Utente registrato correttamente</h1>";
+                echo "<br><h3>Utente registrato correttamente</h3>";
                 exit();
             } else {
-                // Handle errors in statement execution
-                echo "Error executing statement: ". mysqli_stmt_error($stmt);
+                // Gestisco gli errori dell'esecuzione
+                echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
                 exit();
             }
             
-            // Close the prepared statement
+            // Chiudo la dichiarazione
             mysqli_stmt_close($stmt);
         
-            // Close the database connection
+            // Chiudo la connessione col database
             mysqli_close($db);
          ?>
+         <button onclick="location.href='homepage.php'">Torna alla homepage</button>
         </body>
     </html>

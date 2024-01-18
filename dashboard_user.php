@@ -1,32 +1,82 @@
 <?php
 // Inizializzazione della sessione
-session_start();
+//session_start();
 // Fine: ed8c6549bwf9
 // FILEPATH: /dashboard_user.php
-$db = mysqli_connect('localhost:3351', 'phpmyadmin', 'ciaone11!', 'biblioteca');
+$db = mysqli_connect('localhost', 'root', '', 'biblioteca');
 // Funzionalità di logout
 function logout()
-{
-    header("Location: login.php");
+{   
+    // Distruggo la sessione
+    session_unset(); 
+    session_destroy();
+
+
+    // Elimino i cookie
+    if (isset($_COOKIE['emai'])) {
+        setcookie('email', '', time() - 3600, '/');
+    }
+    if (isset($_COOKIE['password'])) {
+        setcookie('password', '', time() - 3600, '/');
+    }
+
+    // Ridireziono l'utente all'homepage
+    header("Location: homepage.php");
     exit();
-    // gestione ed eliminazione del cookie
 }
+if(isset($_POST['logout'])) {
+        logout();
+    }
+
 
 // Funzionalità di eliminazione dell'account
 function deleteAccount()
 {
-    // Reindirizza alla pagina di login
-    header("Location: login.php");
+    header("Location: confirmation_page.php");
+}
 
+if (isset($_POST['deleteAccount'])) {
+    deleteAccount();
+}
+
+if (isset($_POST['confirmDelete'])) {
     // Eliminazione dell'account dal database
     mysqli_query($db, "DELETE FROM utenti_registrati WHERE email='" . $_SESSION['email'] . "'");
-    //eliminazione nome
-    mysqli_query($db, "DELETE FROM utenti_registrati WHERE nome='" . $_SESSION['nome'] . "'");
-    //eliminazione cognome
-    mysqli_query($db, "DELETE FROM utenti_registrati WHERE cognome='" . $_SESSION['cognome'] . "'");
-    //eliminazione password
-    mysqli_query($db, "DELETE FROM utenti_registrati WHERE password='" . $_SESSION['password'] . "'");
+    
+    // Preparo la dichiarazione per ottenere la password criptata e il tipo di account
+    $stmt = mysqli_prepare($db, "DELETE FROM utenti_registrati WHERE email = ?");
+            
+    if ($stmt === false) {
+        // Gestisco gli errori nella dichiarazione
+        echo "<br><h3 style='color:Tomato;'>Error preparing statement: ". mysqli_error($db) . "</h3>";
+        exit();
+    }
+    
+    // Lego i parametri alla dichiarazione precedente
+    // "s" sta per i tipi di parametri (String)
+    mysqli_stmt_bind_param($stmt, 's', $_SESSION['email']);
+    
+    // Eseguo la dichiarazione
+    if (mysqli_stmt_execute($stmt)) {
+        echo "<br><h1>Utente eliminato con successo</h1>";
+        exit();
+    } else {
+        // Gestisco gli errori dell'esecuzione
+        echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
+        exit();
+    }
+    
+    // Chiudo la dichiarazione
+    mysqli_stmt_close($stmt);
+
+    // Ridirigo l'utente alla homepage
+    header("Location: homepage.php");
 }
+
+if (isset($_POST['cancelDelete'])) {
+    header("Location: dashboard_user.php");
+}
+
 
 // Mostra i libri disponibili
 function displayBooks()

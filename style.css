@@ -1,4 +1,105 @@
-.signupForm{
-    padding: 5px;
-    border: 2px solid rgb(104, 0, 165);
+/* Stili per il body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Stili per l'intestazione (h1) */
+h1 {
+    color: #333;
+    margin-top: 50px;
+}
+
+/* Stili per il paragrafo (p) */
+p {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+}
+
+/* Stili per i pulsanti */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Stili per separare i pulsanti */
+button + button {
+    margin-left: 20px;
+}
+
+/* Stili per i link all'interno dei pulsanti */
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Hover effect per i pulsanti */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Stili per il form di registrazione */
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Stili per le etichette dei campi del modulo */
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Stili per gli input dei campi del modulo */
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 20px;
+    font-style: bold;
+}
+
+/* Stili per il pulsante di invio del modulo */
+.form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover effect per il pulsante di invio del modulo */
+.form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form select option[value="user"],
+.form select option[value="admin"] {
+    text-align: center;
+    font-size: 20px;
+    font-style: bold;
+    margin-right: 20%;
 }
