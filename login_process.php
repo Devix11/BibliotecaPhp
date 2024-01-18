@@ -9,15 +9,14 @@
 <?php
 // Stabilisco la connessione col database
 $db = mysqli_connect('localhost', 'root', '', 'biblioteca');
-
-
+session_start(); 
 
 // Controllo la validità della connessione
 if (!$db) {
     exit("<br><h3 style='color:Tomato;'>Connessione fallita: " . mysqli_connect_error() . "</h3>");
 }
 
-//prima del processo di login controllo se c'è un cookie per saltare il sistema di login
+//Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
 if (isset($_COOKIE['login'])) {
     $email = $_COOKIE['login'];
     $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
@@ -70,9 +69,14 @@ function verify($db, $email, $password, $type) {
 
         // Verifico la password della form con la password dell'account criptata e controllo il tipo di utente
         if (password_verify($password, $hashedPassword) && $storedType === $type) {
+            // Salvo i valori nella sessione
+            $_SESSION["email"] = $email;
+            $_SESSION["password"] = $password;
+
             // La password è valida e il tipo di utente è corretto
             if ($profile_type == "admin") {
                 header("Location: dashboard_admin.php");
+
             } else {
                 header("Location: dashboard_user.php");
             }
