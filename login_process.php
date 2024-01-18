@@ -17,6 +17,19 @@ if (!$db) {
     exit("<br><h3 style='color:Tomato;'>Connessione fallita: " . mysqli_connect_error() . "</h3>");
 }
 
+//prima del processo di login controllo se c'è un cookie per saltare il sistema di login
+if (isset($_COOKIE['login'])) {
+    $email = $_COOKIE['login'];
+    $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
+    if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
+        if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == 1) {
+            header("Location: dashboard_admin.php");
+        } else {
+            header("Location: dashboard_user.php");
+        }
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['email']) || empty($_POST['password'])) {
         exit("<br><h3 style='color:Tomato;'>Errore: dati mancanti!</h3>");

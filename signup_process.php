@@ -52,6 +52,38 @@
             // Lego i parametri alla dichiarazione precedente
             // "ssssi" sta per i tipi di parametri (String, String, String, String, Integer)
             mysqli_stmt_bind_param($stmt, 'ssss', $name, $surname, $email, $hash);
+
+            //creazione del cookie per rimanere loggato
+            // Eseguo la dichiarazione
+            if (mysqli_stmt_execute($stmt)) {
+                echo "<br><h3>Utente registrato correttamente</h3>";
+
+                // Creo il cookie per mantenere l'utente loggato
+                $cookie_name = "user";
+                $cookie_value = $email;
+                $cookie_expiry = time() + (86400 * 30); // 30 giorni
+                setcookie($cookie_name, $cookie_value, $cookie_expiry, "/");
+
+                // Salvo il cookie nel database
+                $cookie_query = "UPDATE utenti_registrati SET cookie = '$cookie_value' WHERE email = '$email'";
+                mysqli_query($db, $cookie_query);
+
+                exit();
+            } else {
+                // Gestisco gli errori dell'esecuzione
+                echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
+                exit();
+            }
+
+            // Chiudo la dichiarazione
+            mysqli_stmt_close($stmt);
+
+            // Chiudo la connessione col database
+            mysqli_close($db);
+            ?>
+            <button onclick="location.href='homepage.php'">Torna alla homepage</button>
+            </body>
+            </html>
             
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($stmt)) {
