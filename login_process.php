@@ -8,8 +8,8 @@
 <body>
 <?php
 // Stabilisco la connessione col database
+ini_set('display_errors', 1);
 $db = mysqli_connect('localhost', 'root', '', 'biblioteca');
-
 
 
 // Controllo la validità della connessione
