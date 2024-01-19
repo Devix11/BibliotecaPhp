@@ -9,7 +9,7 @@
 <?php
 // Stabilisco la connessione col database
 ini_set('display_errors', 1);
-$db = mysqli_connect('localhost', 'root', 'DRCS3Pabn!sNyEz2ZKMjEiS7%om5pGGw@*@JTeMQ$O4U!', 'biblioteca');
+$db = mysqli_connect('localhost', 'biblioteca', 'password', 'biblioteca');
 
 
 // Controllo la validità della connessione
