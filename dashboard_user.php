@@ -32,11 +32,24 @@ if(isset($_POST['logout'])) {
 // Funzionalità di eliminazione dell'account
 function deleteAccount()
 {
+    // Distruggo la sessione
+    session_unset(); 
+    session_destroy();
+
+
+    // Elimino i cookie
+    if (isset($_COOKIE['emai'])) {
+        setcookie('email', '', time() - 3600, '/');
+    }
+    if (isset($_COOKIE['password'])) {
+        setcookie('password', '', time() - 3600, '/');
+    }
     header("Location: confirmation_page.php");
 }
 
 if (isset($_POST['deleteAccount'])) {
     deleteAccount();
+    
 }
 
 if (isset($_POST['confirmDelete'])) {
