@@ -9,7 +9,7 @@
 <?php
             
             // Stabilisco la connessione col database
-            $db = mysqli_connect('localhost', 'root', '', 'biblioteca');
+            $db = mysqli_connect('localhost', 'biblioteca', 'password', 'biblioteca');
             // Controllo la validità della connessione
             if (!$db) {
                 exit("<br><h3 style='color:Tomato;'>Connessione fallita: " . mysqli_connect_error() . "</h3>");
