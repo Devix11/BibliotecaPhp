@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-</head>
-<body>
+
 <?php
             
             // Stabilisco la connessione col database
@@ -23,9 +16,9 @@
                     empty($_POST['password'])
                 ) 
                     exit("<br><h3 style='color:Tomato;'>Errore: dati mancanti!</h3>");
-
-                
             }
+
+
             // Pulisco i valori in ingresso
             $name = strip_tags(htmlentities($_POST['name']));
             $surname = strip_tags(htmlentities($_POST['surname']));
@@ -53,22 +46,41 @@
             // "ssssi" sta per i tipi di parametri (String, String, String, String, Integer)
             mysqli_stmt_bind_param($stmt, 'ssss', $name, $surname, $email, $hash);
 
-            //creazione del cookie per rimanere loggato
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($stmt)) {
                 echo "<br><h3>Utente registrato correttamente</h3>";
 
                 // Creo il cookie per mantenere l'utente loggato
-                $cookie_name = "user";
-                $cookie_value = $email;
-                $cookie_expiry = time() + (86400 * 30); // 30 giorni
-                setcookie($cookie_name, $cookie_value, $cookie_expiry, "/");
+                $cookie_token = bin2hex(random_bytes(16));
+                $expires_at = date('Y-m-d H:i:s', strtotime('+30 days'));
+                //faccio una query per ottenere l'id dell'utente appena registrato
+                $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
+                $result = mysqli_query($db, $query);
+                $user_id = mysqli_fetch_assoc($result)['id'];
 
-                // Salvo il cookie nel database
-                $cookie_query = "UPDATE utenti_registrati SET cookie = '$cookie_value' WHERE email = '$email'";
-                mysqli_query($db, $cookie_query);
+                // Preparo la dichiarazione per inserire il cookie nel database
+                $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at) VALUES ($user_id, $cookie_token, $expires_at)");
 
-                exit();
+                if ($cookie_stmt === false) {
+                    // Gestisco gli errori nella dichiarazione
+                    echo "<br><h3 style='color:Tomato;'>Error preparing statement: ". mysqli_error($db) . "</h3>";
+                    exit();
+                }
+
+                // Lego i parametri alla dichiarazione precedente
+                mysqli_stmt_bind_param($cookie_stmt, 'iss', $user_id, $cookie_token, $expires_at);
+
+                // Eseguo la dichiarazione
+                if (mysqli_stmt_execute($cookie_stmt)) {
+                    echo "<br><h3>Cookie creato correttamente</h3>";
+                } else {
+                    // Gestisco gli errori dell'esecuzione
+                    echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($cookie_stmt) . "</h3>";
+                    exit();
+                }
+
+                // Chiudo la dichiarazione
+                mysqli_stmt_close($cookie_stmt);
             } else {
                 // Gestisco gli errori dell'esecuzione
                 echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
@@ -80,7 +92,23 @@
 
             // Chiudo la connessione col database
             mysqli_close($db);
-            ?>
+        
+            
+                
+
+                exit();
+             else {
+                // Gestisco gli errori dell'esecuzione
+                echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
+                exit();
+            }
+
+            // Chiudo la dichiarazione
+            mysqli_stmt_close($stmt);
+
+            // Chiudo la connessione col database
+            mysqli_close($db);
+            
             <button onclick="location.href='homepage.php'">Torna alla homepage</button>
             </body>
             </html>
@@ -104,3 +132,5 @@
          <button onclick="location.href='homepage.php'">Torna alla homepage</button>
         </body>
     </html>
+
+
