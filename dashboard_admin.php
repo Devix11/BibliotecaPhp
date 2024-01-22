@@ -90,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Genere</th>
                 <th>Anno Pubblicazione</th>
                 <th>Disponibilità</th>
+                <th>Descrizione</th>
                 <th>Azione</th>
             </tr>
             <?php foreach ($books as $book) { ?>
@@ -98,6 +99,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><?php echo $book['id']; ?></td>
                         <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
+                        <td>
+                                                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                                                    <input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>">
+                                                </td>
+                                                <td><input type="text" name="book_genre" value="<?php echo $book['genere']; ?>"></td>
+                                                <td><input type="text" name="book_publication_year" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                                                <td><input type="text" name="book_availability" value="<?php echo $book['disponibilita']; ?>"></td>
+                                                <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
+                                                <td>
+                                                    <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
+                                                </td>
+                                            </form>
+                                        </tr>
+                                    <?php } ?>
+                                </table>
+
+                                <h2>Utenti</h2>
+                                <table>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Azione</th>
+                                    </tr>
+                                    <?php foreach ($users as $user) { ?>
+                                        <tr>
+                                            <form method="POST" action="">
+                                                <td><?php echo $user['id']; ?></td>
+                                                <td><input type="text" name="user_name" value="<?php echo $user['nome']; ?>"></td>
+                                                <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
+                                                <td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                             <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
