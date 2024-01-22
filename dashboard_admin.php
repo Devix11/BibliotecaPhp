@@ -105,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- pulsante + che aggiunge un libro alla quantità -->
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
                             <button type="button" onclick="incrementQuantity(<?php echo $book['id']; ?>)">+</button>
                             <!-- per tohliere un libro alla quantità button -->
                             <button type="button" onclick="decrementQuantity(<?php echo $book['id']; ?>)">-</button>
