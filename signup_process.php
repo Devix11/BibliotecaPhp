@@ -65,7 +65,7 @@
             $user_id = mysqli_fetch_assoc($result)['id'];
 
             // Preparo la dichiarazione per inserire il cookie nel database
-            $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at) VALUES ($user_id, $cookie_token, $expires_at)");
+            $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at) VALUES (?, ?, ?)");
 
             if ($cookie_stmt === false) {
                 // Gestisco gli errori nella dichiarazione
