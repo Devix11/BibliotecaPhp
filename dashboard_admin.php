@@ -105,10 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
                         <!-- pulsante + che aggiunge un libro alla quantità -->
                         <td>
-                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <button type="button" onclick="incrementQuantity(<?php echo $book['id']; ?>)">+</button>
-                            <!-- per tohliere un libro alla quantità button -->
-                            <button type="button" onclick="decrementQuantity(<?php echo $book['id']; ?>)">-</button>
+                            <input type="button" value="+" onclick="incrementQuantity()">
+                            <input type="button" value="-" onclick="decrementQuantity()">
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
@@ -159,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }, 500);
             }
                         function incrementQuantity(bookId) {
-                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
+                            var quantityInput = mysqli_query($db, "SELECT disponibilita FROM libri WHERE id = '$bookId'");
                             if (quantityInput) {
                                 var currentQuantity = parseInt(quantityInput.value);
                                 quantityInput.value = currentQuantity + 1;
