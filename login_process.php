@@ -9,7 +9,7 @@
 <?php
 // Stabilisco la connessione col database
 ini_set('display_errors', 1);
-$db = mysqli_connect('localhost', 'biblioteca', 'password', 'biblioteca');
+$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 
 
 // Controllo la validità della connessione
