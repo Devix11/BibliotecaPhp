@@ -32,12 +32,12 @@ class Database {
     }
 
     public function updateBook($bookId, $bookTitle, $bookAuthor) {
-        $query = "UPDATE libri SET title = '$bookTitle', author = '$bookAuthor' WHERE id = $bookId";
+        $query = "UPDATE libri SET titolo = '$bookTitle', autore = '$bookAuthor' WHERE id = $bookId";
         mysqli_query($this->connection, $query);
     }
 
     public function updateUser($userId, $userName, $userEmail) {
-        $query = "UPDATE utenti_registrati SET name = '$userName', email = '$userEmail' WHERE id = $userId";
+        $query = "UPDATE utenti_registrati SET nome = '$userName', email = '$userEmail' WHERE id = $userId";
         mysqli_query($this->connection, $query);
     }
 
