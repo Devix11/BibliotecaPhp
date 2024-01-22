@@ -99,13 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><?php echo $book['id']; ?></td>
                         <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
-                        <td
-                        <td><?php echo $book['isbn']; ?></td>
-                
-                        <td><?php echo $book['genere']; ?></td>
-                        <td><?php echo $book['annoPubblicazione']; ?></td>
-                        <td><?php echo $book['disponibilita']; ?></td>
-                        <td><?php echo $book['descrizione']; ?></td>
+                        <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
+                        <td><input type="text" name="book_genre" value="<?php echo $book['genere']; ?>"></td>
+                        <td><input type="text" name="book_year" value="<?php echo $book['anno_pubblicazione']; ?>"></td>
+                        <td><input type="text" name="book_availability" value="<?php echo $book['disponibilita']; ?>"></td>
+                        <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                             <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
@@ -120,7 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Cognome</th>
                 <th>Email</th>
+                <th>Password</th>
                 <th>Azione</th>
             </tr>
             <?php foreach ($users as $user) { ?>

@@ -20,4 +20,6 @@ button {
     font-size: 15px;
     border-radius: 15px;
     border-width: 1.5px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
