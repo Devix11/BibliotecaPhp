@@ -1,5 +1,9 @@
+* {
+   font-family: 'Montserrat'; 
+}
+
 body{
-    background-color: antiquewhite;
+    background-color: #EDEAE3;
 }
 
 h1{
