@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>ISBN</th>
                 <th>Genere</th>
                 <th>Anno Pubblicazione</th>
-                <th>Disponibilità</th>
+                <th>Disponibilità   </th>
                 <th>Descrizione</th>
                 <th>Azione</th>
             </tr>
@@ -126,7 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (quantityInput) {
                                 var currentQuantity = parseInt(quantityInput.value);
                                 quantityInput.value = currentQuantity + 1;
+                                document.querySelector('form').submit();
+                                refreshPage();
                             }
+                            //dopo aver svolto la riduzione va fatta la submit e aggiornato i valori sul sito
+
                         }
 
                         function decrementQuantity(bookId) {
@@ -134,6 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (quantityInput) {
                                 var currentQuantity = parseInt(quantityInput.value);
                                 quantityInput.value = currentQuantity - 1;
+                                document.querySelector('form').submit();
+                                refreshPage();
                             }
                         }
                         </script>
