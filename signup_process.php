@@ -11,11 +11,7 @@
         //display errors
         ini_set('display_errors', 1);
         // Stabilisco la connessione col database
-        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
-        // Controllo la validità della connessione
-        if (!$db) {
-            exit("<br><h3 style='color:Tomato;'>Connessione fallita: " . mysqli_connect_error() . "</h3>");
-        }
+        include_once "database.php";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (
