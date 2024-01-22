@@ -1,4 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration</title>
+    </head>
+    <body>
 <?php
             
             // Stabilisco la connessione col database
@@ -50,6 +57,7 @@
             if (mysqli_stmt_execute($stmt)) {
                 echo "<br><h3>Utente registrato correttamente</h3>";
 
+                /*
                 // Creo il cookie per mantenere l'utente loggato
                 $cookie_token = bin2hex(random_bytes(16));
                 $expires_at = date('Y-m-d H:i:s', strtotime('+30 days'));
@@ -66,6 +74,7 @@
                     echo "<br><h3 style='color:Tomato;'>Error preparing statement: ". mysqli_error($db) . "</h3>";
                     exit();
                 }
+                */
 
                 // Lego i parametri alla dichiarazione precedente
                 mysqli_stmt_bind_param($cookie_stmt, 'iss', $user_id, $cookie_token, $expires_at);
@@ -79,13 +88,6 @@
                     exit();
                 }
 
-                // Chiudo la dichiarazione
-                mysqli_stmt_close($cookie_stmt);
-            } else {
-                // Gestisco gli errori dell'esecuzione
-                echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
-                exit();
-            }
 
             // Chiudo la dichiarazione
             mysqli_stmt_close($stmt);
@@ -93,41 +95,12 @@
             // Chiudo la connessione col database
             mysqli_close($db);
         
-            
-                
-
-                exit();
-             else {
-                // Gestisco gli errori dell'esecuzione
-                echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
-                exit();
-            }
-
-            // Chiudo la dichiarazione
-            mysqli_stmt_close($stmt);
-
-            // Chiudo la connessione col database
-            mysqli_close($db);
-            
-            <button onclick="location.href='homepage.php'">Torna alla homepage</button>
-            </body>
-            </html>
-            
-            // Eseguo la dichiarazione
-            if (mysqli_stmt_execute($stmt)) {
-                echo "<br><h3>Utente registrato correttamente</h3>";
                 exit();
             } else {
                 // Gestisco gli errori dell'esecuzione
                 echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
                 exit();
             }
-            
-            // Chiudo la dichiarazione
-            mysqli_stmt_close($stmt);
-        
-            // Chiudo la connessione col database
-            mysqli_close($db);
          ?>
          <button onclick="location.href='homepage.php'">Torna alla homepage</button>
         </body>
