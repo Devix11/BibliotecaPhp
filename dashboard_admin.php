@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <input type="submit" value="Aggiorna">
+                            <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
                         </td>
                     </form>
                 </tr>
@@ -125,5 +125,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             <?php } ?>
         </table>
+        <!--  Script JS per aggiornare la pagina dopo aver premuto il bottone aggiorna, con un wait di mezzo secondo -->
+        <script>
+            function refreshPage() {
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 500);
+            }
+        </script>
     </body>
 </html>
