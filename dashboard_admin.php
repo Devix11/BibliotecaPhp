@@ -102,13 +102,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
                         <td><input type="text" name="book_genre" value="<?php echo $book['genere']; ?>"></td>
                         <td><input type="text" name="book_year" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                        <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
                         <!-- pulsante + che aggiunge un libro alla quantità -->
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                             <button type="button" onclick="incrementQuantity(<?php echo $book['id']; ?>)">+</button>
                             <!-- per tohliere un libro alla quantità button -->
                             <button type="button" onclick="decrementQuantity(<?php echo $book['id']; ?>)">-</button>
-                            
+                            <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
+                        <td>
+                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                            <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
+                        </td>
                         </td>
                         </form>
                         </tr>
@@ -132,13 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             }
                         }
                         </script>
-                    
-                        <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
-                        <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
-                        <td>
-                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
-                        </td>
                     </form>
                 </tr>
         </table>
