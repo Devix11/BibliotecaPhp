@@ -96,9 +96,6 @@
             exit();
         }
 
-        // Chiudo la dichiarazione
-        mysqli_stmt_close($stmt);
-
         // Chiudo la connessione col database
         mysqli_close($db);
         ?>

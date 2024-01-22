@@ -8,8 +8,8 @@ body{
     margin: 0;
     padding: 0;
     text-align: center;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    padding-top: 15%;
+    padding-bottom: 15%;
 
     display: block;
     font-size: 2em;
@@ -22,7 +22,7 @@ body{
 
 h3 {
     display: block;
-    font-size: 1.17em;
+    font-size: 1em;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
