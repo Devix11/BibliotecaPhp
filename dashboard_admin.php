@@ -142,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </td>
                     </form>
                 </tr>
-            <?php } ?>
         </table>
 
         <h2>Utenti</h2>
