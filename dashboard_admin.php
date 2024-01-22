@@ -101,8 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
                         <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
                         <td><input type="text" name="book_genre" value="<?php echo $book['genere']; ?>"></td>
-                        <td><input type="text" name="book_year" value="<?php echo $book['anno_pubblicazione']; ?>"></td>
-                        <td><input type="text" name="book_availability" value="<?php echo $book['disponibilita']; ?>"></td>
+                        <td><input type="text" name="book_year" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                        <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
                         <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
