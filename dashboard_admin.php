@@ -2,17 +2,52 @@
 // FILEPATH: /Users/dade/Documents/GitHub/BibliotecaPhp/dashboard_admin.php
 
 // Controlla se l'utente è loggato e ha privilegi di amministratore
-session_start();
-if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+//session_start();
+/*if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     header("Location: login.php"); // Reindirizza alla pagina di login se non loggato come amministratore
     exit;
+}*/
+
+//metodi per la connessione al database e per la query dentro la classe Database
+class Database {
+
+    private $connection;
+
+    public function __construct() {
+        $this->connection = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+    }
+
+    public function getBooks() {
+        $query = "SELECT * FROM books";
+        $result = mysqli_query($this->connection, $query);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    public function getUsers() {
+        $query = "SELECT * FROM users";
+        $result = mysqli_query($this->connection, $query);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    public function updateBook($bookId, $bookTitle, $bookAuthor) {
+        $query = "UPDATE books SET title = '$bookTitle', author = '$bookAuthor' WHERE id = $bookId";
+        mysqli_query($this->connection, $query);
+    }
+
+    public function updateUser($userId, $userName, $userEmail) {
+        $query = "UPDATE users SET name = '$userName', email = '$userEmail' WHERE id = $userId";
+        mysqli_query($this->connection, $query);
+    }
+
 }
 
 // Includi i file necessari e inizializza le variabili
 // DATABASe Mysql
-$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+$database = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 $database = new Database();
+//query per la lista dei libri
 $books = $database->getBooks();
+//query per la lista degli utenti
 $users = $database->getUsers();
 
 // Gestisci le sottomissioni del form

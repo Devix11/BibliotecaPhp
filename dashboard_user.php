@@ -72,6 +72,7 @@ if (isset($_POST['confirmDelete'])) {
     // Eseguo la dichiarazione
     if (mysqli_stmt_execute($stmt)) {
         echo "<br><h1>Utente eliminato con successo</h1>";
+        echo "<br><button onclick="location.href='homepage.php'">Torna alla homepage</button>";
         exit();
     } else {
         // Gestisco gli errori dell'esecuzione
@@ -146,6 +147,7 @@ function returnBookAndReview($bookId, $review)
     <head>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="./signup.css">
         <title>Dashboard</title>
     </head>
     <body>

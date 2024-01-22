@@ -1,11 +1,14 @@
 * {
-   font-family: 'Montserrat';
+    font-family: 'Montserrat';
 }
 
 body{
-    background-color: #EDEAE3;
+    background-color: #F1F1F1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 h1{
-    color: red;
+    font-style: italic; 
 }
