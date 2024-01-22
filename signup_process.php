@@ -6,8 +6,10 @@
         <title>Registration</title>
     </head>
     <body>
+    <button onclick="location.href='homepage.php'">Torna alla homepage</button>
 <?php
-            
+            //display errors
+            ini_set('display_errors', 1);
             // Stabilisco la connessione col database
             $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
             // Controllo la validità della connessione
@@ -102,7 +104,6 @@
                 exit();
             }
          ?>
-         <button onclick="location.href='homepage.php'">Torna alla homepage</button>
         </body>
     </html>
 
