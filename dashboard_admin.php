@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
                             <button type="button" onclick="incrementQuantity(<?php echo $book['id']; ?>)">+</button>
                             <!-- per tohliere un libro alla quantità button -->
+                            <button type="button" onclick="decrementQuantity(<?php echo $book['id']; ?>)">-</button>
                             
                         </td>
                         </form>
@@ -121,6 +122,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (quantityInput) {
                                 var currentQuantity = parseInt(quantityInput.value);
                                 quantityInput.value = currentQuantity + 1;
+                            }
+                        }
+
+                        function decrementQuantity(bookId) {
+                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
+                            if (quantityInput) {
+                                var currentQuantity = parseInt(quantityInput.value);
+                                quantityInput.value = currentQuantity - 1;
                             }
                         }
                         </script>
