@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <tr>
                     <form method="POST" action="">
                         <td><?php echo $user['id']; ?></td>
-                        <td><input type="text" name="user_name" value="<?php echo $user['name']; ?>"></td>
+                        <td><input type="text" name="user_name" value="<?php echo $user['nome']; ?>"></td>
                         <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
                         <td>
                             <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
