@@ -8,15 +8,11 @@
         <link rel="stylesheet" href="./homepage.css">
         <title>Benvenuto</title>
     </head>
-    
+        
     <body>
-        <b><h1>Registrazione nuovo utente</h1></b>
-        <form action="signup_process.php" class="signupForm" method="post">
-            <label>Nome: <br><input type="text" name="name" required></label><br>
-            <label>Cognome: <br><input type="text" name="surname" required></label><br>
-            <label>Email: <br><input type="email" name="email" required></label><br>
-            <label>Password: <br><input type="password" name="password" required></label><br>
-            <button type="submit">Register</button>
-        </form>
+        <b><h1>Benvenuto nella biblioteca Online</h1></b>
+        <p>Esplora la nostra collezione di libri o gestisci il tuo account</p> <br>
+        <button onclick="location.href='login.php'">Accedi</button> &nbsp;&nbsp;&nbsp;
+        <button onclick="location.href='signup.php'">Registrati</button>
     </body>
 </html>
