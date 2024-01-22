@@ -20,24 +20,24 @@ class Database {
     }
 
     public function getBooks() {
-        $query = "SELECT * FROM books";
+        $query = "SELECT * FROM libri";
         $result = mysqli_query($this->connection, $query);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     public function getUsers() {
-        $query = "SELECT * FROM users";
+        $query = "SELECT * FROM utenti_registrati";
         $result = mysqli_query($this->connection, $query);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     public function updateBook($bookId, $bookTitle, $bookAuthor) {
-        $query = "UPDATE books SET title = '$bookTitle', author = '$bookAuthor' WHERE id = $bookId";
+        $query = "UPDATE libri SET title = '$bookTitle', author = '$bookAuthor' WHERE id = $bookId";
         mysqli_query($this->connection, $query);
     }
 
     public function updateUser($userId, $userName, $userEmail) {
-        $query = "UPDATE users SET name = '$userName', email = '$userEmail' WHERE id = $userId";
+        $query = "UPDATE utenti_registrati SET name = '$userName', email = '$userEmail' WHERE id = $userId";
         mysqli_query($this->connection, $query);
     }
 

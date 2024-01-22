@@ -1,5 +1,6 @@
 * {
     font-family: 'Montserrat';
+    font-style: italic;
 }
 
 body{
@@ -9,6 +10,6 @@ body{
     text-align: center;
 }
 
-h1{
-    font-style: italic; 
+p {
+    font-weight: 300;
 }
