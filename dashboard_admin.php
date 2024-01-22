@@ -106,25 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- pulsante + che aggiunge un libro alla quantità -->
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <script>
-                                function incrementQuantity(bookId) {
-                                    var input = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
-                                    if (input) {
-                                        var currentValue = parseInt(input.value);
-                                        input.value = currentValue + 1;
-                                    }
-                                }
-
-                                function decrementQuantity(bookId) {
-                                    var input = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
-                                    if (input) {
-                                        var currentValue = parseInt(input.value);
-                                        if (currentValue > 0) {
-                                            input.value = currentValue - 1;
-                                        }
-                                    }
-                                }
-                            </script>
                             <button type="button" onclick="incrementQuantity(<?php echo $book['id']; ?>)">+</button>
                             <!-- per tohliere un libro alla quantità button -->
                             <button type="button" onclick="decrementQuantity(<?php echo $book['id']; ?>)">-</button>
@@ -177,9 +158,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location.reload(1);
                 }, 500);
             }
-
-
-            <script>
                         function incrementQuantity(bookId) {
                             var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
                             if (quantityInput) {
@@ -201,7 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 refreshPage();
                             }
                         }
-                        </script>
         </script>
     </body>
 </html>
