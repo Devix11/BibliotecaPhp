@@ -119,30 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                         <?php } ?>
                         </table>
-
-                        <script>
-                        function incrementQuantity(bookId) {
-                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
-                            if (quantityInput) {
-                                var currentQuantity = parseInt(quantityInput.value);
-                                quantityInput.value = currentQuantity + 1;
-                                document.querySelector('form').submit();
-                                refreshPage();
-                            }
-                            //dopo aver svolto la riduzione va fatta la submit e aggiornato i valori sul sito
-
-                        }
-
-                        function decrementQuantity(bookId) {
-                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
-                            if (quantityInput) {
-                                var currentQuantity = parseInt(quantityInput.value);
-                                quantityInput.value = currentQuantity - 1;
-                                document.querySelector('form').submit();
-                                refreshPage();
-                            }
-                        }
-                        </script>
                     </form>
                 </tr>
         </table>
@@ -182,6 +158,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location.reload(1);
                 }, 500);
             }
+
+
+            <script>
+                        function incrementQuantity(bookId) {
+                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
+                            if (quantityInput) {
+                                var currentQuantity = parseInt(quantityInput.value);
+                                quantityInput.value = currentQuantity + 1;
+                                document.querySelector('form').submit();
+                                refreshPage();
+                            }
+                            //dopo aver svolto la riduzione va fatta la submit e aggiornato i valori sul sito
+
+                        }
+
+                        function decrementQuantity(bookId) {
+                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
+                            if (quantityInput) {
+                                var currentQuantity = parseInt(quantityInput.value);
+                                quantityInput.value = currentQuantity - 1;
+                                document.querySelector('form').submit();
+                                refreshPage();
+                            }
+                        }
+                        </script>
         </script>
     </body>
 </html>
