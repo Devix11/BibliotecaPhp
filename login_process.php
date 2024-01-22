@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <title>Registration</title>
     </head>
     <body>
@@ -95,9 +96,5 @@
         }
         ?>
         <button onclick="location.href='homepage.php'">Torna alla homepage</button>
-
-        <?php
-            include_once("./style/fonts.php");
-        ?>
     </body>
 </html>

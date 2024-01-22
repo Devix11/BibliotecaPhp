@@ -35,60 +35,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Pannello di controllo amministratore</title>
-</head>
-<body>
-    <h1>Benvenuto nel Pannello di Controllo Amministratore</h1>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <title>Pannello di controllo amministratore</title>
+    </head>
+    <body>
+        <h1>Benvenuto nel Pannello di Controllo Amministratore</h1>
 
-    <h2>Libri</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Titolo</th>
-            <th>Autore</th>
-            <th>Azione</th>
-        </tr>
-        <?php foreach ($books as $book) { ?>
+        <h2>Libri</h2>
+        <table>
             <tr>
-                <form method="POST" action="">
-                    <td><?php echo $book['id']; ?></td>
-                    <td><input type="text" name="book_title" value="<?php echo $book['title']; ?>"></td>
-                    <td><input type="text" name="book_author" value="<?php echo $book['author']; ?>"></td>
-                    <td>
-                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                        <input type="submit" value="Aggiorna">
-                    </td>
-                </form>
+                <th>ID</th>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th>Azione</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php foreach ($books as $book) { ?>
+                <tr>
+                    <form method="POST" action="">
+                        <td><?php echo $book['id']; ?></td>
+                        <td><input type="text" name="book_title" value="<?php echo $book['title']; ?>"></td>
+                        <td><input type="text" name="book_author" value="<?php echo $book['author']; ?>"></td>
+                        <td>
+                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                            <input type="submit" value="Aggiorna">
+                        </td>
+                    </form>
+                </tr>
+            <?php } ?>
+        </table>
 
-    <h2>Utenti</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Azione</th>
-        </tr>
-        <?php foreach ($users as $user) { ?>
+        <h2>Utenti</h2>
+        <table>
             <tr>
-                <form method="POST" action="">
-                    <td><?php echo $user['id']; ?></td>
-                    <td><input type="text" name="user_name" value="<?php echo $user['name']; ?>"></td>
-                    <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
-                    <td>
-                        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                        <input type="submit" value="Aggiorna">
-                    </td>
-                </form>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Azione</th>
             </tr>
-        <?php } ?>
-    </table>
-
-    <?php
-        include_once("./style/fonts.php");
-    ?>
-</body>
+            <?php foreach ($users as $user) { ?>
+                <tr>
+                    <form method="POST" action="">
+                        <td><?php echo $user['id']; ?></td>
+                        <td><input type="text" name="user_name" value="<?php echo $user['name']; ?>"></td>
+                        <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
+                        <td>
+                            <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                            <input type="submit" value="Aggiorna">
+                        </td>
+                    </form>
+                </tr>
+            <?php } ?>
+        </table>
+    </body>
 </html>

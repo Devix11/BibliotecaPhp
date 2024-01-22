@@ -145,6 +145,7 @@ function returnBookAndReview($bookId, $review)
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <title>Dashboard</title>
     </head>
     <body>
@@ -212,10 +213,6 @@ function returnBookAndReview($bookId, $review)
             <input type="text" name="review" placeholder="Enter review">
             <input type="submit" name="returnBookAndReview" value="Return a book and leave a review">
         </form>
-
-        <?php
-            include_once("./style/fonts.php");
-        ?>
     </body>
 </html>
 
