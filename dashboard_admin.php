@@ -11,6 +11,7 @@
 //metodi per la connessione al database e per la query dentro la classe Database
 //display error
 ini_set('display_errors', 1);
+
 class Database {
 
     private $connection;

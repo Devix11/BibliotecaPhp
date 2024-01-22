@@ -2,6 +2,7 @@
 <html>
     <head>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="./signup.css">
         <title>Conferma Eliminazione Account</title>
     </head>
     <body>

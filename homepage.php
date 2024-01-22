@@ -11,7 +11,7 @@
         
     <body>
         <b><h1>Benvenuto nella biblioteca Online</h1></b>
-        <p>Esplora la nostra collezione di libri o gestisci il tuo account</p> <br>
+        <h4>Esplora la nostra collezione di libri o gestisci il tuo account</h4> <br>
         <button onclick="location.href='login.php'">Accedi</button> &nbsp;&nbsp;&nbsp;
         <button onclick="location.href='signup.php'">Registrati</button>
     </body>
