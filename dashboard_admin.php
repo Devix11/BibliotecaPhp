@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="user_surname" value="<?php echo $user['cognome']; ?>"></td>
                         <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
                         <td><input type="text" name="user_password" value="<?php echo $user['password']; ?>"></td>
-                        <td><input type="text" name="user_admin" value="<?php echo $user['admin']; ?>"></td>
+                        <td><input type="text" name="user_admin" value="<?php echo $user['adm']; ?>"></td>
                         <td>
                             <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                             <input type="submit" value="Aggiorna" onclick="return confirmDelete()">

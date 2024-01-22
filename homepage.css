@@ -12,12 +12,12 @@ body{
     padding-bottom: 20%;
 }
 
-h4 {
+h3 {
     font-weight: 300;
 }
 
 button {
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 15px;
     border-width: 1.5px;
     padding-left: 12px;
