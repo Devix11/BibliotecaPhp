@@ -86,6 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>ID</th>
                 <th>Titolo</th>
                 <th>Autore</th>
+                <th>ISBN</th>
+                <th>Genere</th>
+                <th>Anno Pubblicazione</th>
+                <th>Disponibilità</th>
                 <th>Azione</th>
             </tr>
             <?php foreach ($books as $book) { ?>
@@ -119,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
                         <td>
                             <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                            <input type="submit" value="Aggiorna">
+                            <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
                         </td>
                     </form>
                 </tr>
