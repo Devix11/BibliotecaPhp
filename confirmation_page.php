@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Conferma Eliminazione Account</title>
@@ -9,5 +9,9 @@
         <input type="submit" name="confirmDelete" value="Si">
         <input type="submit" name="cancelDelete" value="No">
     </form>
+    
+    <?php
+        include_once("./style/fonts.php");
+    ?>
 </body>
 </html>

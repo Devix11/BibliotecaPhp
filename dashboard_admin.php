@@ -9,7 +9,8 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
 }
 
 // Includi i file necessari e inizializza le variabili
-require_once 'database.php';
+// DATABASe Mysql
+$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 $database = new Database();
 $books = $database->getBooks();
 $users = $database->getUsers();
@@ -85,5 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tr>
         <?php } ?>
     </table>
+
+    <?php
+        include_once("./style/fonts.php");
+    ?>
 </body>
 </html>

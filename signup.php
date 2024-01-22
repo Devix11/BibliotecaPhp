@@ -16,5 +16,9 @@
             <label>Password: <br><input type="password" name="password" required></label><br>
             <button type="submit">Register</button>
         </form>
+
+        <?php
+            include_once("./style/fonts.php");
+        ?>
     </body>
 </html>

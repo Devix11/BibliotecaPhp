@@ -39,5 +39,9 @@
 
             <button type="submit">Accedi</button>
         </form>
+
+        <?php
+            include_once("./style/fonts.php");
+        ?>
     </body>
 </html>
