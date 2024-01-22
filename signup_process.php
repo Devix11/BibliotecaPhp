@@ -90,11 +90,6 @@
 
         // Chiudo la dichiarazione
         mysqli_stmt_close($stmt);
-
-        // Chiudo la connessione col database
-        mysqli_close($db);
-    
-            exit();
         } else {
             // Gestisco gli errori dell'esecuzione
             echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
