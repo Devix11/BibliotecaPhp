@@ -1,4 +1,6 @@
 <?php
+//display error
+ini_set('display_errors', 1);
 // Inizializzazione della sessione
 //session_start();
 // Fine: ed8c6549bwf9

@@ -61,7 +61,7 @@
 
             // Creo il cookie per mantenere l'utente loggato
             $cookie_token = bin2hex(random_bytes(16));
-            $expires_at = date('Y-m-d H:i:s', strtotime('+30 days'));
+            $expires_at = date('Y-m-d H:i:s', strtotime('+7 days'));
             //faccio una query per ottenere l'id dell'utente appena registrato
             $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
             $result = mysqli_query($db, $query);
