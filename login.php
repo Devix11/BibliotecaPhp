@@ -24,11 +24,11 @@
         <form action="login_process.php" class="form" method="post">
             <label>Tipo di profilo:
             <select name="profile_type">
-                <option value="user">User&nbsp;&nbsp;&nbsp;</option>
+                <option value="user">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User</option>
                 <option value="admin">Admin&nbsp;&nbsp;&nbsp;</option>
             </select>
         </label><br>
-            <label>Email: <br><input type="text" name="email" required></label><br>
+            <label>Email: <br><input type="email" name="email" required></label><br>
             <label>Password: <br><input type="password" name="password" required></label><br>
             <label>
                 <input type="checkbox" name="remember_me"> Remember Me
