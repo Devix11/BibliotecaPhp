@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tr>
             <?php foreach ($books as $book) { ?>
                 <tr>
-                    <form method="POST" action="">
+                    <form method="POST" action="update_book.php">
                         <td><?php echo $book['id']; ?></td>
                         <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
@@ -105,8 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
                         <!-- pulsante + che aggiunge un libro alla quantità -->
                         <td>
-                            <input type="button" value="+" onclick="incrementQuantity()">
-                            <input type="button" value="-" onclick="decrementQuantity()">
+                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                            <input type="submit" name="increment" value="+">
+                            <input type="submit" name="decrement" value="-">
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
                         <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
@@ -156,13 +157,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location.reload(1);
                 }, 500);
             }
-                        function incrementQuantity(bookId) {
+                        /*function incrementQuantity(bookId) {
                             var quantityInput = mysqli_query($db, "SELECT disponibilita FROM libri WHERE id = '$bookId'");
                             if (quantityInput) {
                                 var currentQuantity = parseInt(quantityInput.value);
                                 quantityInput.value = currentQuantity + 1;
                                 document.querySelector('form').submit();
                                 refreshPage();
+                                //db update query
+                                $query = "UPDATE libri SET disponibilita = '$quantityInput' WHERE id = '$bookId'";
                             }
                             //dopo aver svolto la riduzione va fatta la submit e aggiornato i valori sul sito
 
@@ -176,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 document.querySelector('form').submit();
                                 refreshPage();
                             }
-                        }
+                        }*/
         </script>
     </body>
 </html>
