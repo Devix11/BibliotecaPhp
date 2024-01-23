@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Descrizione</th>
                 <th>Azione</th>
             </tr>
-            <?php /*foreach ($books as $book) {*/ ?>
+            <?php foreach ($books as $book) { ?>
                             <form method="POST" action="update_book.php">
                                 <tr>
                                     <td><?php echo $book['id']; ?></td>
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><input type="submit" name="updateBook" value="Aggiorna"></td>
                                 </tr>
                             </form>
-                    <?php/* }*/ ?>
+                    <?php } ?>
                 </tr>
         </table>
 
