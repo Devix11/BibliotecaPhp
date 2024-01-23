@@ -1,7 +1,7 @@
 <?php
 // update_book.php
-//$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
-include_once "database.php";
+$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+
 
 //display error
 ini_set('display_errors', 1);
