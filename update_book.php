@@ -194,11 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
 
-    if (isset($_POST['updateTitle'])) {
-        $newTitle = $_POST['newTitle'];
-    } else {
 
-    }
+        $newTitle = $_POST['newTitle'];
 
     var_dump($newTitle);
     echo "$newTitle";
