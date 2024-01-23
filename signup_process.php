@@ -82,7 +82,7 @@
 
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($cookie_stmt)) {
-                $_COOKIE["id"] = $user_id;
+                setcookie("id", $user_id, time() + 86400, "/");
                 header("Location: dashboard_user.php");
             } else {
                 // Gestisco gli errori dell'esecuzione
@@ -93,7 +93,7 @@
 
         // Chiudo la dichiarazione
         mysqli_stmt_close($stmt);
-        */
+        
         } else {
             // Gestisco gli errori dell'esecuzione
             echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
