@@ -148,7 +148,7 @@ function returnBookAndReview($bookId, $review)
     <head>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="./signup.css">
+        <link rel="stylesheet" href="./dashboard.css">
         <title>Dashboard</title>
     </head>
     <body>
