@@ -186,14 +186,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "SELECT * FROM libri WHERE id = '$bookId'";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $currentTitle = $row['titolo'];
-    $currentAuthor = $row['autore'];
-    $currentIsbn = $row['isbn'];
-    $currentGenre = $row['genere'];
-    $currentYear = $row['anno_pubblicazione'];
-    $currentAvailability = $row['disponibilita'];
-    $currentQuantity = $row['quantita'];
-    $currentDescription = $row['descrizione'];
+    $newTitle = $row['titolo'];
+    $newAuthor = $row['autore'];
+    $newIsbn = $row['isbn'];
+    $newGenre = $row['genere'];
+    $newYear = $row['anno_pubblicazione'];
+    $newAvailability = $row['disponibilita'];
+    $newQuantity = $row['quantita'];
+    $newDescription = $row['descrizione'];
 
     if (isset($_POST['updateTitle'])) {
         $newTitle = $_POST['newTitle'];
