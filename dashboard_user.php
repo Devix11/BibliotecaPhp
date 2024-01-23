@@ -66,7 +66,7 @@ if (isset($_POST['confirmDelete'])) {
     }
     
     // Preparo la dichiarazione per ottenere la password criptata e il tipo di account
-    $stmt = mysqli_prepare($db, "DELETE FROM utenti_registrati WHERE email = ?");
+    $stmt = mysqli_prepare($db, "DELETE * FROM utenti_registrati WHERE email = ?");
             
     if ($stmt === false) {
         // Gestisco gli errori nella dichiarazione
