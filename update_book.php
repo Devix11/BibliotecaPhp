@@ -191,8 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newIsbn = $row['isbn'];
     $newGenre = $row['genere'];
     $newYear = $row['annoPubblicazione'];
-    $newAvailability = $row['disponibilita'];
-    //$newQuantity = $row['quantita'];
+    $newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
 /*
     if (isset($_POST['updateTitle'])) {
@@ -245,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }*/
 
-    $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', descrizione = '$newDescription' WHERE id = '$bookId'";
+    $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
     mysqli_query($db, $updateQuery);
 
     header('Location: dashboard_admin.php');
