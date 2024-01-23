@@ -5,8 +5,95 @@ $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 //display error
 ini_set('display_errors', 1);
 
+//gestione aggiornamento titolo
 
-//gestione aggiornamento quantità
+
+//gestione aggiornamento isbn
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT isbn FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentIsbn = $row['isbn'];
+
+    if (isset($_POST['updateIsbn'])) {
+        $newIsbn = $_POST['newIsbn'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET isbn = '$newIsbn' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
+
+//gestione aggiornamento genere
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT genere FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentGenre = $row['genere'];
+
+    if (isset($_POST['updateGenre'])) {
+        $newGenre = $_POST['newGenre'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET genere = '$newGenre' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
+
+
+//gestione aggiornamento anno pubblicazione
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT anno_pubblicazione FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentYear = $row['anno_pubblicazione'];
+
+    if (isset($_POST['updateYear'])) {
+        $newYear = $_POST['newYear'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET anno_pubblicazione = '$newYear' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
+
+//gestione aggiornamento disponibilità tramite textbox
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT disponibilita FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentAvailability = $row['disponibilita'];
+
+    if (isset($_POST['updateAvailability'])) {
+        $newAvailability = $_POST['newAvailability'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET disponibilita = '$newAvailability' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
+
+//gestione aggiornamento disponibilità tramite pulsanti
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bookId = $_POST['book_id'];
     $query = "SELECT quantita FROM libri WHERE id = '$bookId'";
