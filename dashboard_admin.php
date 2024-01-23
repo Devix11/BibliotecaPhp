@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php foreach ($books as $book) { ?>
                 <tr>
                     <form method="POST" action="update_book.php">
-                        <td>
+                        
                             <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                             <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
                             <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td><input type="submit" name="increment" value="+">
                             <td><input type="submit" name="decrement" value="-">
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
-                        <td>
+                        
                     </form>
                     <?php } ?>
                 </tr>
