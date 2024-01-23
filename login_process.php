@@ -18,9 +18,9 @@
         }
 
         //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
-        if (isset($_['email'])) {
-            $email = $_COOKIE['email'];
-            $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
+        if (isset($_COOKIE["id"])) {
+            $id = $_COOKIE["id"];
+            $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
             if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
                 if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
                     header("Location: dashboard_admin.php");
