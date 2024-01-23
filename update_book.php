@@ -194,6 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
 
+    var_dump($newTitle);
+
     $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
     var_dump($updateQuery);
     mysqli_query($db, $updateQuery);
