@@ -59,6 +59,7 @@
         if (mysqli_stmt_execute($stmt)) {
             echo "<br><h3>Utente registrato correttamente</h3>";
 
+            /*
             // Creo il cookie per mantenere l'utente loggato
             $cookie_token = bin2hex(random_bytes(16));
             $expires_at = date('Y-m-d H:i:s', strtotime('+7 days'));
@@ -92,6 +93,7 @@
 
         // Chiudo la dichiarazione
         mysqli_stmt_close($stmt);
+        */
         } else {
             // Gestisco gli errori dell'esecuzione
             echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";

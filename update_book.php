@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newAuthor = $row['autore'];
     $newIsbn = $row['isbn'];
     $newGenre = $row['genere'];
-    $newYear = $row['anno_pubblicazione'];
+    $newYear = $row['annoPubblicazione'];
     $newAvailability = $row['disponibilita'];
     $newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
