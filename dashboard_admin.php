@@ -96,6 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php foreach ($books as $book) { ?>
                 <tr>
                     <form method="POST" action="update_book.php">
+                        <td>
+                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                            <input type="submit" name="increment" value="+">
+                            <input type="submit" name="decrement" value="-">
+                            <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
+                        <td>
+                    </form>
+                    <form method="POST" action="">
                         <td><?php echo $book['id']; ?></td>
                         <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                         <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
@@ -104,12 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><input type="text" name="book_year" value="<?php echo $book['annoPubblicazione']; ?>"></td>
                         <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
                         <!-- pulsante + che aggiunge un libro alla quantità -->
-                        <td>
-                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <input type="submit" name="increment" value="+">
-                            <input type="submit" name="decrement" value="-">
-                            <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
-                        <td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                             <input type="submit" value="Aggiorna" onclick="return confirmDelete()">
                         </td>
