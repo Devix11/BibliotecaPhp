@@ -70,3 +70,10 @@ button a {
     font-size: 20px;
     font-style: bold;
 }
+
+.form select option[value="user"],
+.form select option[value="admin"] {
+    text-align: center;
+    font-size: 20px;
+    font-style: bold;
+}
