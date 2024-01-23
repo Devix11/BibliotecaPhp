@@ -113,8 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </tr>
     </form>
 <?php } ?>
-
-                    <?php } ?>
                 </tr>
         </table>
 
