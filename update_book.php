@@ -2,6 +2,10 @@
 // update_book.php
 $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 
+//display error
+ini_set('display_errors', 1);
+
+
 //gestione aggiornamento quantità
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bookId = $_POST['book_id'];
