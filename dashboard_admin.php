@@ -109,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
                         <td>
                     </form>
+                    <?php } ?>
                 </tr>
         </table>
 
@@ -147,29 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location.reload(1);
                 }, 500);
             }
-                        /*function incrementQuantity(bookId) {
-                            var quantityInput = mysqli_query($db, "SELECT disponibilita FROM libri WHERE id = '$bookId'");
-                            if (quantityInput) {
-                                var currentQuantity = parseInt(quantityInput.value);
-                                quantityInput.value = currentQuantity + 1;
-                                document.querySelector('form').submit();
-                                refreshPage();
-                                //db update query
-                                $query = "UPDATE libri SET disponibilita = '$quantityInput' WHERE id = '$bookId'";
-                            }
-                            //dopo aver svolto la riduzione va fatta la submit e aggiornato i valori sul sito
-
-                        }
-
-                        function decrementQuantity(bookId) {
-                            var quantityInput = document.querySelector('input[name="book_availability"][value="' + bookId + '"]');
-                            if (quantityInput) {
-                                var currentQuantity = parseInt(quantityInput.value);
-                                quantityInput.value = currentQuantity - 1;
-                                document.querySelector('form').submit();
-                                refreshPage();
-                            }
-                        }*/
         </script>
     </body>
 </html>
