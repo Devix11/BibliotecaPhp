@@ -195,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newDescription = $row['descrizione'];
 
     $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
-    console.log($updateQuery);
+    var_dump($updateQuery);
     mysqli_query($db, $updateQuery);
 
     header('Location: dashboard_admin.php');
