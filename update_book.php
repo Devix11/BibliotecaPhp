@@ -7,6 +7,7 @@ $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 ini_set('display_errors', 1);
 
 //gestione aggiornamento titolo
+/*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bookId = $_POST['book_id'];
     $query = "SELECT titolo FROM libri WHERE id = '$bookId'";
@@ -177,8 +178,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header('Location: dashboard_admin.php'); 
     exit();
+}*/
+
+//gestione aggiornamento di tutti i campi
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT * FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentTitle = $row['titolo'];
+    $currentAuthor = $row['autore'];
+    $currentIsbn = $row['isbn'];
+    $currentGenre = $row['genere'];
+    $currentYear = $row['anno_pubblicazione'];
+    $currentAvailability = $row['disponibilita'];
+    $currentQuantity = $row['quantita'];
+    $currentDescription = $row['descrizione'];
+
+    if (isset($_POST['updateTitle'])) {
+        $newTitle = $_POST['newTitle'];
+    } else {
+
+    }
+
+    if (isset($_POST['updateAuthor'])) {
+        $newAuthor = $_POST['newAuthor'];
+    } else {
+
+    }
+
+    if (isset($_POST['updateIsbn'])) {
+        $newIsbn = $_POST['newIsbn'];
+    } else {
+
+    }
+
+    if (isset($_POST['updateGenre'])) {
+        $newGenre = $_POST['newGenre'];
+    } else {
+
+    }
+
+    if (isset($_POST['updateYear'])) {
+        $newYear = $_POST['newYear'];
+    } else {
+
+    }
+
+    if (isset($_POST['updateAvailability'])) {
+        $newAvailability = $_POST['newAvailability'];
+    } else {
+
+    }
+
+    if (isset($_POST['increment'])) {
+        $newQuantity = $currentQuantity + 1;
+    } elseif (isset($_POST['decrement']) && $currentQuantity > 0) {
+        $newQuantity = $currentQuantity - 1;
+    } else {
+
+    }
+
+    if (isset($_POST['updateDescription'])) {
+        $newDescription = $_POST['newDescription'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', anno_pubblicazione = '$newYear', disponibilita = '$newAvailability', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php');
+    exit();
 }
 
-
-//gestione aggiornamento titolo
 ?>
