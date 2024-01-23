@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newGenre = $row['genere'];
     $newYear = $row['annoPubblicazione'];
     $newAvailability = $row['disponibilita'];
-    $newQuantity = $row['quantita'];
+    //$newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
 
     if (isset($_POST['updateTitle'])) {
@@ -230,14 +230,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
 
     }
-
+/*
     if (isset($_POST['increment'])) {
         $newQuantity = $currentQuantity + 1;
     } elseif (isset($_POST['decrement']) && $currentQuantity > 0) {
         $newQuantity = $currentQuantity - 1;
     } else {
 
-    }
+    }*/
 
     if (isset($_POST['updateDescription'])) {
         $newDescription = $_POST['newDescription'];
@@ -245,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }
 
-    $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', anno_pubblicazione = '$newYear', disponibilita = '$newAvailability', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
+    $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', anno_pubblicazione = '$newYear', disponibilita = '$newAvailability', descrizione = '$newDescription' WHERE id = '$bookId'";
     mysqli_query($db, $updateQuery);
 
     header('Location: dashboard_admin.php');

@@ -65,14 +65,14 @@ button a {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    text-align: left;
+    text-align: center;
     font-size: 20px;
     font-style: bold;
 }
 
 .form select option[value="user"],
 .form select option[value="admin"] {
-    text-align: center;
+    text-align: left;
     font-size: 20px;
     font-style: bold;
 }
