@@ -201,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     var_dump($newTitle);
+    echo "$newTitle";
 
     $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
     var_dump($updateQuery);
