@@ -97,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <tr>
                     <form method="POST" action="update_book.php">
                         <td>
+                            <td><?php echo $book['id']; ?></td>
                             <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                             <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
                             <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
