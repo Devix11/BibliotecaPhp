@@ -1,4 +1,13 @@
 <?php
+// update_user.php
+$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+
+
+//display error
+ini_set('display_errors', 1);
+
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_POST['user_id'];
     $query = "SELECT * FROM utenti_registrati WHERE id = '$userId'";
