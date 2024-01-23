@@ -3,7 +3,12 @@
 //session_start();
 // Fine: ed8c6549bwf9
 // FILEPATH: /dashboard_user.php
-include_once "database.php";
+// Stabilisco la connessione col database
+$db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+// Verifica se la connessione è attiva
+if (mysqli_connect_error()) {
+    die("Errore nella connessione al database: " . mysqli_connect_error());
+}
 // Funzionalità di logout
 function logout()
 {   

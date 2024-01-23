@@ -11,7 +11,11 @@
         //display errors
         ini_set('display_errors', 1);
         // Stabilisco la connessione col database
-        include_once "database.php";
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+            die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (

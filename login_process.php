@@ -10,7 +10,12 @@
         <?php
         // Stabilisco la connessione col database
         ini_set('display_errors', 1);
-        include_once "database.php";
+        // Stabilisco la connessione col database
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+            die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
 
         //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
         if (isset($_COOKIE['login'])) {
