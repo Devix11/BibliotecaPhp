@@ -7,7 +7,6 @@ $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 ini_set('display_errors', 1);
 
 //gestione aggiornamento titolo
-//gestione aggiornamento titolo
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bookId = $_POST['book_id'];
     $query = "SELECT titolo FROM libri WHERE id = '$bookId'";
@@ -22,6 +21,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $updateQuery = "UPDATE libri SET titolo = '$newTitle' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
+
+//gestione aggiornamento autore
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT autore FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentAuthor = $row['autore'];
+
+    if (isset($_POST['updateAuthor'])) {
+        $newAuthor = $_POST['newAuthor'];
+    } else {
+
+    }
+
+    $updateQuery = "UPDATE libri SET autore = '$newAuthor' WHERE id = '$bookId'";
     mysqli_query($db, $updateQuery);
 
     header('Location: dashboard_admin.php'); 
@@ -159,26 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 }
 
-//gestione aggiornamento autore
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $bookId = $_POST['book_id'];
-    $query = "SELECT autore FROM libri WHERE id = '$bookId'";
-    $result = mysqli_query($db, $query);
-    $row = mysqli_fetch_assoc($result);
-    $currentAuthor = $row['autore'];
-
-    if (isset($_POST['updateAuthor'])) {
-        $newAuthor = $_POST['newAuthor'];
-    } else {
-
-    }
-
-    $updateQuery = "UPDATE libri SET autore = '$newAuthor' WHERE id = '$bookId'";
-    mysqli_query($db, $updateQuery);
-
-    header('Location: dashboard_admin.php'); 
-    exit();
-}
 
 //gestione aggiornamento titolo
 ?>
