@@ -39,18 +39,7 @@ if(isset($_POST['logout'])) {
 // Funzionalità di eliminazione dell'account
 function deleteAccount()
 {
-    // Distruggo la sessione
-    session_unset(); 
-    session_destroy();
-
-
-    // Elimino i cookie
-    if (isset($_COOKIE['emai'])) {
-        setcookie('email', '', time() - 3600, '/');
-    }
-    if (isset($_COOKIE['password'])) {
-        setcookie('password', '', time() - 3600, '/');
-    }
+    
     header("Location: confirmation_page.php");
 }
 
@@ -65,6 +54,18 @@ if (isset($_POST['confirmDelete'])) {
     if (mysqli_query($db, "DELETE * FROM user_cookies INNER JOIN utenti_registrati ON utenti_registrati.id = user_cookies.id WHERE utenti_registrati.email = '$email'")){
     } else {
         echo "Error deleting records: " . mysqli_error($db);
+    }
+    // Distruggo la sessione
+    session_unset(); 
+    session_destroy();
+
+
+    // Elimino i cookie
+    if (isset($_COOKIE['emai'])) {
+        setcookie('email', '', time() - 3600, '/');
+    }
+    if (isset($_COOKIE['password'])) {
+        setcookie('password', '', time() - 3600, '/');
     }
     
     // Preparo la dichiarazione per ottenere la password criptata e il tipo di account

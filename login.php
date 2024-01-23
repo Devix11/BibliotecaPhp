@@ -15,21 +15,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="./signup.css">
+        <link rel="stylesheet" href="./login.css">
         <title>Login</title>
     </head>
     <body>
         <h1>Login</h1>
-        <!--
-        Sezione di select per il tipo di profilo, user o admin
-        -->
-        
-
+        <!-- Sezione di select per il tipo di profilo, user o admin -->
         <form action="login_process.php" class="form" method="post">
             <label>Tipo di profilo:
             <select name="profile_type">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="user">User&nbsp;&nbsp;&nbsp;</option>
+                <option value="admin">Admin&nbsp;&nbsp;&nbsp;</option>
             </select>
         </label><br>
             <label>Email: <br><input type="text" name="email" required></label><br>

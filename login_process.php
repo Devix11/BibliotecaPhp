@@ -71,6 +71,7 @@
                 // Verifico la password della form con la password dell'account criptata e controllo il tipo di utente
                 if (password_verify($password, $hashedPassword) && $storedType === $type) {
                     // Salvo i valori nella sessione
+                    session_start();
                     $_SESSION["email"] = $email;
                     $_SESSION["password"] = $password;
 
