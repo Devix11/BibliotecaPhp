@@ -18,7 +18,7 @@
         }
 
         //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
-        if (isset($_COOKIE['email'])) {
+        if (isset($_['email'])) {
             $email = $_COOKIE['email'];
             $query = "SELECT * FROM utenti_registrati WHERE email = '$email'";
             if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
@@ -75,9 +75,7 @@
                     $_SESSION["email"] = $email;
                     $_SESSION["password"] = $password;
                     if ($_POST["remember_me"]){
-                        $_COOKIE["email"] = $email;
-                        $_COOKIE["password"] = $password;
-
+                        
                     }
 
                     // La password è valida e il tipo di utente è corretto

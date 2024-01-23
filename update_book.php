@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newAvailability = $row['disponibilita'];
     //$newQuantity = $row['quantita'];
     $newDescription = $row['descrizione'];
-
+/*
     if (isset($_POST['updateTitle'])) {
         $newTitle = $_POST['newTitle'];
     } else {
@@ -230,20 +230,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
 
     }
-/*
+
     if (isset($_POST['increment'])) {
         $newQuantity = $currentQuantity + 1;
     } elseif (isset($_POST['decrement']) && $currentQuantity > 0) {
         $newQuantity = $currentQuantity - 1;
     } else {
 
-    }*/
+    }
 
     if (isset($_POST['updateDescription'])) {
         $newDescription = $_POST['newDescription'];
     } else {
 
-    }
+    }*/
 
     $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', descrizione = '$newDescription' WHERE id = '$bookId'";
     mysqli_query($db, $updateQuery);
