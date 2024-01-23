@@ -96,19 +96,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php foreach ($books as $book) { ?>
                 <tr>
                     <form method="POST" action="update_book.php">
-                        <td>
+                    
                             <td><?php echo $book['id']; ?></td>
                             <td><input type="text" name="book_title" value="<?php echo $book['titolo']; ?>"></td>
                             <td><input type="text" name="book_author" value="<?php echo $book['autore']; ?>"></td>
                             <td><input type="text" name="book_isbn" value="<?php echo $book['isbn']; ?>"></td>
                             <td><input type="text" name="book_genre" value="<?php echo $book['genere']; ?>"></td>
                             <td><input type="text" name="book_year" value="<?php echo $book['annoPubblicazione']; ?>"></td>
-                            <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>"></td>
+                            <td><input type="text" name="book_availability" value="<?php echo $book['quantita']; ?>">
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <td><input type="submit" name="increment" value="+"></td>
-                            <td><input type="submit" name="decrement" value="-"></td>
+                            <input type="submit" name="increment" value="+">
+                            <input type="submit" name="decrement" value="-"></td>
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
-                        <td>
+
                     </form>
                     <?php } ?>
                 </tr>
