@@ -81,8 +81,6 @@ if (isset($_POST['confirmDelete'])) {
     // Eseguo la dichiarazione
     if (mysqli_stmt_execute($stmt)) {
         alert("Utente eliminato con successo");
-        header("Location: homepage.php");
-        exit();
     } else {
         // Gestisco gli errori dell'esecuzione
         echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
