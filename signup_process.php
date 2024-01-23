@@ -82,6 +82,7 @@
 
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($cookie_stmt)) {
+                $_COOKIE["id"] = $user_id;
                 header("Location: dashboard_user.php");
             } else {
                 // Gestisco gli errori dell'esecuzione

@@ -59,6 +59,7 @@ button a {
 /* Stili per gli input dei campi del modulo */
 .form input[type="email"],
 .form input[type="password"],
+.form input[type="checkbox"],
 .form select {
     width: 75%;
     padding: 10px;
