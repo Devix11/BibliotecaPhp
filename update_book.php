@@ -6,6 +6,26 @@ $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 ini_set('display_errors', 1);
 
 //gestione aggiornamento titolo
+//gestione aggiornamento titolo
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bookId = $_POST['book_id'];
+    $query = "SELECT titolo FROM libri WHERE id = '$bookId'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $currentTitle = $row['titolo'];
+
+    if (isset($_POST['updateTitle'])) {
+        $newTitle = $_POST['newTitle'];
+    } else {
+        // Handle error or default value
+    }
+
+    $updateQuery = "UPDATE libri SET titolo = '$newTitle' WHERE id = '$bookId'";
+    mysqli_query($db, $updateQuery);
+
+    header('Location: dashboard_admin.php'); 
+    exit();
+}
 
 
 //gestione aggiornamento isbn
@@ -23,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }
 
-    $updateQuery = "UPDATE libri SET isbn = '$newIsbn' WHERE id = '$bookId'";
+    $updateQuery = "UPDATE libri SET isbn = '$newIsbns' WHERE id = '$bookId'";
     mysqli_query($db, $updateQuery);
 
     header('Location: dashboard_admin.php'); 
