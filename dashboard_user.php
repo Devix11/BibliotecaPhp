@@ -58,8 +58,8 @@ if (isset($_POST['deleteAccount'])) {
 }
 
 if (isset($_POST['confirmDelete'])) {
-    // Eliminazione dell'account dal database
-    mysqli_query($db, "DELETE FROM utenti_registrati WHERE email='" . $_SESSION['email'] . "'");
+    // Eliminazione del cookie dal database
+    mysqli_query($db, "DELETE FROM user_cookies JOIN utenti_registrati ON utenti_registrati.id = user_cookies.id WHERE utenti_registrati.email = £_SESSION['email']");
     
     // Preparo la dichiarazione per ottenere la password criptata e il tipo di account
     $stmt = mysqli_prepare($db, "DELETE FROM utenti_registrati WHERE email = ?");
@@ -76,7 +76,7 @@ if (isset($_POST['confirmDelete'])) {
     
     // Eseguo la dichiarazione
     if (mysqli_stmt_execute($stmt)) {
-        alert("Utente eliminatocon successo");
+        alert("Utente eliminato con successo");
         header("Location: homepage.php");
         exit();
     } else {
