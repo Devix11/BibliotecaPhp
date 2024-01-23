@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 
 //gestione aggiornamento isbn
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
     $bookId = $_POST['book_id'];
     $query = "SELECT isbn FROM libri WHERE id = '$bookId'";
     $result = mysqli_query($db, $query);
