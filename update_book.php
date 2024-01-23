@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     var_dump($updateQuery);
     mysqli_query($db, $updateQuery);
 
-    header('Location: dashboard_admin.php');
+    //header('Location: dashboard_admin.php');
     exit();
 }
 
