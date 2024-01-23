@@ -82,7 +82,7 @@
 
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($cookie_stmt)) {
-                header("Location: dashboard_user");
+                header("Location: dashboard_user.php");
             } else {
                 // Gestisco gli errori dell'esecuzione
                 echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($cookie_stmt) . "</h3>";
