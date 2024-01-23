@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Cognome</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>Admin</th>
+                <th>Tipologia</th>
                 <th>Azione</th>
             </tr>
             <?php foreach ($users as $user) { ?>
