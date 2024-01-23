@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="submit" name="increment" value="+">
                             <input type="submit" name="decrement" value="-"></td>
                             <td><input type="text" name="book_description" value="<?php echo $book['descrizione']; ?>"></td>
-
+                            <td><input type="submit" value="Aggiorna"></td>
                     </form>
                     <?php } ?>
                 </tr>
