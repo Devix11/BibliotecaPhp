@@ -16,22 +16,7 @@
         if (mysqli_connect_error()) {
             die("Errore nella connessione al database: " . mysqli_connect_error());
         }
-
-        //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
-        if (isset($_COOKIE["id"])) {
-            $id = $_COOKIE["id"];
-            $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
-            if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
-                if (password_verify($password, mysqli_fetch_assoc(mysqli_query($db, $query))['password'])){
-                    if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
-                        header("Location: dashboard_admin.php");
-                    } else {
-                        header("Location: dashboard_user.php");
-                    }
-                }
-            }
-        }
-
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST['email']) || empty($_POST['password'])) {
                 exit("<br><h3 style='color:Tomato;'>Errore: dati mancanti!</h3>");
@@ -46,6 +31,21 @@
                 verify($db, $email, $password, "admin");
             } else {
                 verify($db, $email, $password, "user");
+            }
+        }
+
+        //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
+        if (isset($_COOKIE["id"])) {
+            $id = $_COOKIE["id"];
+            $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
+            if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
+                if (password_verify($password, mysqli_fetch_assoc(mysqli_query($db, $query))['password'])){
+                    if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
+                        header("Location: dashboard_admin.php");
+                    } else {
+                        header("Location: dashboard_user.php");
+                    }
+                }
             }
         }
 
