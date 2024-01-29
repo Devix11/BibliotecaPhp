@@ -34,21 +34,6 @@
             }
         }
 
-        //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
-        if (isset($_COOKIE["id"])) {
-            $id = $_COOKIE["id"];
-            $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
-            if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
-                if (password_verify($password, mysqli_fetch_assoc(mysqli_query($db, $query))['password'])){
-                    if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
-                        header("Location: dashboard_admin.php");
-                    } else {
-                        header("Location: dashboard_user.php");
-                    }
-                }
-            }
-        }
-
         // Funzione per il controllo del login
         function verify($db, $email, $password, $type) {
             // Preparo la dichiarazione per ottenere la password criptata e il tipo di account

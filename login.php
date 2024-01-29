@@ -6,6 +6,22 @@
         header("Location: dashboard.php");
         exit();
     }
+
+     //Prima del processo di login controllo se c'è un cookie per saltare il sistema di login
+        /*if (isset($_COOKIE["id"])) {
+            $id = $_COOKIE["id"];
+            $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
+            if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
+                if (password_verify($password, mysqli_fetch_assoc(mysqli_query($db, $query))['password'])){
+                    if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
+                        header("Location: dashboard_admin.php");
+                    } else {
+                        header("Location: dashboard_user.php");
+                    }
+                }
+            }
+        }*/
+        //Da revisionare ( il cookie va reso sicuro e bisogna controllarlo prima della submit!!!!!!!!!!! )
 ?>
 
 <!-- Form di login -->
@@ -38,3 +54,4 @@
         </form>
     </body>
 </html>
+
