@@ -114,7 +114,7 @@
                     }
 
                     // La password è valida e il tipo di utente è corretto
-                    if ($profile_type == "admin") {
+                    if ($type == "admin") {
                         header("Location: dashboard_admin.php");
 
                     } else {
