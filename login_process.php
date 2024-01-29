@@ -22,7 +22,7 @@
             $id = $_COOKIE["id"];
             $query = "SELECT * FROM utenti_registrati WHERE id = '$id'";
             if (mysqli_num_rows(mysqli_query($db, $query)) > 0) {
-                if (mysqli_fetch_assoc(mysqli_query($db, $query))['password'] == $password){
+                if (password_verify($password, mysqli_fetch_assoc(mysqli_query($db, $query))['password'])){
                     if (mysqli_fetch_assoc(mysqli_query($db, $query))['adm'] == "admin") {
                         header("Location: dashboard_admin.php");
                     } else {
