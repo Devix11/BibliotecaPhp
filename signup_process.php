@@ -43,7 +43,7 @@
         
 
         // Preparo la dichiarazione per ottenere la password criptata e il tipo di account
-        $stmt = mysqli_prepare($db, "INSERT INTO utenti_registrati (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
+        $stmt = mysqli_prepare($db, "INSERT INTO utenti_registrati (nome, cognome, email, password, val) VALUES (?, ?, ?, ?, ?)");
         
         if ($stmt === false) {
             // Gestisco gli errori nella dichiarazione
@@ -52,13 +52,14 @@
         }
         
         // Lego i parametri alla dichiarazione precedente
-        // "ssssi" sta per i tipi di parametri (String, String, String, String, Integer)
-        mysqli_stmt_bind_param($stmt, 'ssss', $name, $surname, $email, $hash);
+        // "sssss" sta per i tipi di parametri (String, String, String, String, String)
+        mysqli_stmt_bind_param($stmt, 'sssss', $name, $surname, $email, $hash, $password);
 
         // Eseguo la dichiarazione
         if (mysqli_stmt_execute($stmt)) {
             echo "<br><h3>Utente registrato correttamente</h3>";
 
+            if ($_POST["remember_me"]){
             // Creo il cookie per mantenere l'utente loggato
             $cookie_token = bin2hex(random_bytes(16));
             $expires_at = date('Y-m-d H:i:s', strtotime('+7 days'));
@@ -68,7 +69,7 @@
             $user_id = mysqli_fetch_assoc($result)['id'];
 
             // Preparo la dichiarazione per inserire il cookie nel database
-            $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at, password) VALUES (?, ?, ?, ?)");
+            $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at, password ) VALUES (?, ?, ?, ?)");
 
             if ($cookie_stmt === false) {
                 // Gestisco gli errori nella dichiarazione
@@ -82,12 +83,13 @@
 
             // Eseguo la dichiarazione
             if (mysqli_stmt_execute($cookie_stmt)) {
-                setcookie("id", $user_id, time() + 86400, "/");
+                setcookie("value", $cookie_token, time() + 86400, "/");
                 header("Location: dashboard_user.php");
             } else {
                 // Gestisco gli errori dell'esecuzione
                 echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($cookie_stmt) . "</h3>";
                 exit();
+            }
             }
 
 

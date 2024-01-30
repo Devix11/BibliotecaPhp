@@ -41,7 +41,6 @@ class Database {
         $query = "UPDATE utenti_registrati SET nome = '$userName', email = '$userEmail' WHERE id = $userId";
         mysqli_query($this->connection, $query);
     }
-
 }
 
 // Includi i file necessari e inizializza le variabili
@@ -79,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
     <body>
         <h1>Benvenuto nel Pannello di Controllo Amministratore</h1>
-
         <h2>Libri</h2>
         <table>
             <tr>
@@ -93,28 +91,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Descrizione</th>
                 <th>Azione</th>
             </tr>
-            <?php foreach ($books as $book) { ?>
-                            <form method="POST" action="update_book.php">
-                                <tr>
-                                    <td><?php echo $book['id']; ?></td>
-                                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                                    <td><input type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
-                                    <td><input type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
-                                    <td><input type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
-                                    <td><input type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
-                                    <td><input type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
-                                    <td>
-                                        <input type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>">
-                                    </td>
-                                    <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
-                                    <td><input type="submit" name="updateBook" value="Aggiorna"></td>
-                                </tr>
-                            </form>
-                    <?php } ?>
-                </tr>
+                <?php foreach ($books as $book) { ?>
+                <form method="POST" action="update_book.php">
+                    <tr>
+                        <td><?php echo $book['id']; ?></td>
+                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                        <td><input type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
+                        <td><input type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
+                        <td><input type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
+                        <td><input type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
+                        <td><input type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                        <td><input type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
+                        <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
+                        <td><input type="submit" name="updateBook" value="Aggiorna"></td>
+                    </tr>
+                </form>
+                <?php } ?>
+            </tr>
         </table>
 
         <h2>Utenti</h2>
+
         <table>
             <tr>
                 <th>ID</th>
@@ -126,20 +123,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Azione</th>
             </tr>
             <?php foreach ($users as $user) { ?>
-                <tr>
-                    <form method="POST" action="update_user.php">
-                        <td><?php echo $user['id']; ?></td>
-                        <td><input type="text" name="user_name" value="<?php echo $user['nome']; ?>"></td>
-                        <td><input type="text" name="user_surname" value="<?php echo $user['cognome']; ?>"></td>
-                        <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
-                        <td><input type="text" name="user_password" value="<?php echo $user['password']; ?>"></td>
-                        <td><input type="text" name="user_admin" value="<?php echo $user['adm']; ?>"></td>
-                        <td>
-                            <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                            <input type="submit" value="Aggiorna">
-                        </td>
-                    </form>
-                </tr>
+            <tr>
+                <form method="POST" action="update_user.php">
+                    <td><?php echo $user['id']; ?></td>
+                    <td><input type="text" name="user_name" value="<?php echo $user['nome']; ?>"></td>
+                    <td><input type="text" name="user_surname" value="<?php echo $user['cognome']; ?>"></td>
+                    <td><input type="text" name="user_email" value="<?php echo $user['email']; ?>"></td>
+                    <td><input type="text" name="user_password" value="<?php echo $user['val']; ?>"></td>
+                    <td><input type="text" name="user_admin" value="<?php echo $user['adm']; ?>"></td>
+                    <td>
+                        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                        <input type="submit" value="Aggiorna">
+                    </td>
+                </form>
+            </tr>
             <?php } ?>
         </table>
         <!--  Script JS per aggiornare la pagina dopo aver premuto il bottone aggiorna, con un wait di mezzo secondo -->

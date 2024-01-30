@@ -71,7 +71,7 @@
                         $user_id = mysqli_fetch_assoc($result)['id'];
 
                         // Preparo la dichiarazione per inserire il cookie nel database
-                        $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at, password) VALUES (?, ?, ?, ?)");
+                        $cookie_stmt = mysqli_prepare($db, "INSERT INTO user_cookies (user_id, cookie_token, expires_at) VALUES (?, ?, ?)");
 
                         if ($cookie_stmt === false) {
                             // Gestisco gli errori nella dichiarazione
@@ -81,11 +81,11 @@
                         
 
                         // Lego i parametri alla dichiarazione precedente
-                        mysqli_stmt_bind_param($cookie_stmt, 'isss', $user_id, $cookie_token, $expires_at, $password);
+                        mysqli_stmt_bind_param($cookie_stmt, 'iss', $user_id, $cookie_token, $expires_at);
 
                         // Eseguo la dichiarazione
                         if (mysqli_stmt_execute($cookie_stmt)) {
-                            setcookie("id", $user_id, time() + 86400, "/");
+                            setcookie("value", $cookie_token, time() + 86400, "/");
                             header("Location: dashboard_user.php");
                         } else {
                             // Gestisco gli errori dell'esecuzione

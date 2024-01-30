@@ -21,17 +21,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newDescription = $row['descrizione'];
 
 
-    $newTitle = $_POST['newTitle'];
-    $newAuthor = $_POST['newAuthor'];
-    $newIsbn = $_POST['newIsbn'];
-    $newGenre = $_POST['newGenre'];
-    $newYear = $_POST['newYear'];
-    $newQuantity = $_POST['newQuantity'];
-    $newDescription = $_POST['newDescription'];
+    $newTitle = strip_tags(html_entities($_POST['newTitle']));
+    $newAuthor = strip_tags(html_entities($_POST['newAuthor']));
+    $newIsbn = strip_tags(html_entities($_POST['newIsbn']));
+    $newGenre = strip_tags(html_entities($_POST['newGenre']));
+    $newYear = strip_tags(html_entities($_POST['newYear']));
+    $newQuantity = strip_tags(html_entities($_POST['newQuantity']));
+    $newDescription = strip_tags(html_entities($_POST['newDescription']));
 
+    if ($newYear>time()){
+        
+        header('Location: dashboard_admin.php');
+        exit();
+    }
 
+    
     $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
-    mysqli_query($db, $updateQuery);
+    mysqli_real_escapestring($db, $updateQuery);
 
     header('Location: dashboard_admin.php');
     exit();

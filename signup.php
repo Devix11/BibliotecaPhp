@@ -15,6 +15,9 @@
             <label>Cognome: <br><input type="text" name="surname" required></label><br>
             <label>Email: <br><input type="email" name="email" required></label><br>
             <label>Password: <br><input type="password" name="password" required></label><br>
+            <label>
+                <input type="checkbox" name="remember_me"> Remember Me </input>
+            </label><br>
             <button type="submit">Register</button>
         </form>
     </body>
