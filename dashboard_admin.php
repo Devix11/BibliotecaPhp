@@ -82,15 +82,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Libri</h2>
         <table class="flex items-center border-b border-teal-500 py-2">
     <tr>
-        <th>ID</th>
-        <th>Titolo</th>
-        <th>Autore</th>
-        <th>ISBN</th>
-        <th>Genere</th>
-        <th>Anno Pubblicazione</th>
-        <th>Disponibilità</th>
-        <th>Descrizione</th>
-        <th>Azione</th>
+        <td>ID</td>
+        <td>Titolo</td>
+        <td>Autore</td>
+        <td>ISBN</td>
+        <td>Genere</td>
+        <td>Anno Pubblicazione</td>
+        <td>Disponibilità</td>
+        <td>Descrizione</td>
+        <td>Azione</td>
     </tr>
     <?php foreach ($books as $book) { ?>
         <tr>
