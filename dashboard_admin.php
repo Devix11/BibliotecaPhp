@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <body>
         <h1>Benvenuto nel Pannello di Controllo Amministratore</h1>
         <h2>Libri</h2>
-        <table>
+        <table class="flex items-center border-b border-teal-500 py-2">
     <tr>
         <th>ID</th>
         <th>Titolo</th>
