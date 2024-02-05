@@ -146,7 +146,7 @@
     <head>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> -->
         <link rel="stylesheet" href="./dashboard.css">
         <title>Dashboard</title>
     </head>
