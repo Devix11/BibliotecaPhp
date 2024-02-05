@@ -98,14 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" action="update_book.php" class="w-full max-w-sm">
                 <td><?php echo $book['id']; ?></td>
                 <td><input type="hidden" name="book_id" value="<?php echo $book['id']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
-                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
-                <td><textarea class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:text-red-600" name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
-                <td><input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1 px-2 rounded" type="submit" name="updateBook" value="Aggiorna"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                <td><input class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
+                <td><textarea class="appearance-none bg-gray border-none w-full text-gray-700 mr-3 py-1 leading-tight focus:text-red-600" name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
+                <td><input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1  rounded" type="submit" name="updateBook" value="Aggiorna"></td>
             </form>
     </table>
         </tr>
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><input type="text" name="user_admin" value="<?php echo $user['adm']; ?>"></td>
                     <td>
                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                        <input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1 px-2 rounded" type="submit" value="Aggiorna">
+                        <input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1  rounded" type="submit" value="Aggiorna">
                     </td>
                 </form>
                 </table>
