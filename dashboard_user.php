@@ -152,65 +152,65 @@
     </head>
     <body>
         <!-- Pulsante di logout -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="logout" method="post">
             <input type="submit" name="logout" value="Logout">
         </form>
 
         <!-- Pulsante di eliminazione dell'account -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="deleteAccount" method="post">
             <input type="submit" name="deleteAccount" value="Elimina account">
         </form>
 
         <!-- Pulsante per mostrare i libri disponibili -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="displayBooks" method="post">
             <input type="submit" name="displayBooks" value="Mostra libri disponibili">
         </form>
 
         <!-- Pulsante per cercare libri per nome -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="searchByName" method="post">
             <input type="text" name="searchByName" placeholder="Inserisci il nome del libro">
             <input type="submit" name="searchBooksByName" value="Cerca libri per nome">
         </form>
 
         <!-- Pulsante per cercare libri per autore -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="searchByAuthor" method="post">
             <input type="text" name="searchByAuthor" placeholder="Inserisci il nome dell'autore">
             <input type="submit" name="searchBooksByAuthor" value="Cerca libri per autore">
         </form>
 
         <!-- Pulsante per cercare libri per categoria -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="searchByCategory" method="post">
             <input type="text" name="searchByCategory" placeholder="Inserisci la categoria">
             <input type="submit" name="searchBooksByCategory" value="Cerca libri per categoria">
         </form>
 
         <!-- Pulsante per prendere in prestito un libro -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="borrowBook" method="post">
             <input type="text" name="bookId" placeholder="Inserisci l'ID del libro">
             <input type="submit" name="borrowBook" value="Prendi in prestito un libro">
         </form>
 
         <!-- Pulsante per restituire un libro e lasciare una recensione -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="returnBook" method="post">
             <input type="text" name="bookId" placeholder="Inserisci l'ID del libro">
             <input type="text" name="review" placeholder="Inserisci una recensione">
             <input type="submit" name="returnBookAndReview" value="Restituisci un libro e lascia una recensione">
         </form>
 
         <!-- Search books by category button -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="logout" method="post">
             <input type="text" name="searchByCategory" placeholder="Enter category">
             <input type="submit" name="searchBooksByCategory" value="Search books by category">
         </form>
 
         <!-- Borrow a book button -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="logout" method="post">
             <input type="text" name="bookId" placeholder="Enter book ID">
             <input type="submit" name="borrowBook" value="Borrow a book">
         </form>
 
         <!-- Return a book and leave a review button -->
-        <form action="dashboard_user.php" method="post">
+        <form action="dashboard_user.php" class="logout" method="post">
             <input type="text" name="bookId" placeholder="Enter book ID">
             <input type="text" name="review" placeholder="Enter review">
             <input type="submit" name="returnBookAndReview" value="Return a book and leave a review">

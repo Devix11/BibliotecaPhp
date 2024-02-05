@@ -36,7 +36,7 @@
 
         
         $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
-        mysqli_real_escapestring($db, $updateQuery);
+        mysqli_query($db, $updateQuery);
 
         header('Location: dashboard_admin.php');
         exit();

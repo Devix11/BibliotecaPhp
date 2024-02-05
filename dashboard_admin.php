@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><input type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
                                 <td><input type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
                                 <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
-                                <td><input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" name="updateBook" value="Aggiorna"></td>
+                                <td><input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" name="updateBook" value="Aggiorna"></td>
                             </div>
                         </tr>
                     </form>
