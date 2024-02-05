@@ -163,14 +163,22 @@
 
         <!-- Pulsante di eliminazione dell'account -->
         <form action="dashboard_user.php" class="deleteAccount" method="post">
-            <p>Elimina account</p>
-            <input type="submit" name="deleteAccount" value="Elimina account">
+            <table>
+                <tr>
+                    <th><p>Elimina account</p></th>
+                    <th><input type="submit" name="deleteAccount" value="Elimina account"></th>
+                </tr>
+            </table>
         </form>
 
         <!-- Pulsante per mostrare i libri disponibili -->
         <form action="dashboard_user.php" class="displayBooks" method="post">
-            <p>Mostra libri disponibili</p>
-            <input type="submit" name="displayBooks" value="Mostra libri disponibili">
+            <table>
+                <tr>
+                    <th><p>Mostra libri disponibili</p></th>
+                    <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
+                </tr>
+            </table>
         </form>
 
         <!-- Pulsante per cercare libri per nome -->
