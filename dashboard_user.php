@@ -153,16 +153,19 @@
     <body>
         <!-- Pulsante di logout -->
         <form action="dashboard_user.php" class="logout" method="post">
+            <p>Logout</p>
             <input type="submit" name="logout" value="Logout">
         </form>
 
         <!-- Pulsante di eliminazione dell'account -->
         <form action="dashboard_user.php" class="deleteAccount" method="post">
+            <p>Elimina account</p>
             <input type="submit" name="deleteAccount" value="Elimina account">
         </form>
 
         <!-- Pulsante per mostrare i libri disponibili -->
         <form action="dashboard_user.php" class="displayBooks" method="post">
+            <p>Mostra libri disponibili</p>
             <input type="submit" name="displayBooks" value="Mostra libri disponibili">
         </form>
 
