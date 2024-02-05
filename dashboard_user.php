@@ -196,24 +196,5 @@
             <input type="text" name="review" placeholder="Inserisci una recensione">
             <input type="submit" name="returnBookAndReview" value="Restituisci un libro e lascia una recensione">
         </form>
-
-        <!-- Search books by category button -->
-        <form action="dashboard_user.php" class="logout" method="post">
-            <input type="text" name="searchByCategory" placeholder="Enter category">
-            <input type="submit" name="searchBooksByCategory" value="Search books by category">
-        </form>
-
-        <!-- Borrow a book button -->
-        <form action="dashboard_user.php" class="logout" method="post">
-            <input type="text" name="bookId" placeholder="Enter book ID">
-            <input type="submit" name="borrowBook" value="Borrow a book">
-        </form>
-
-        <!-- Return a book and leave a review button -->
-        <form action="dashboard_user.php" class="logout" method="post">
-            <input type="text" name="bookId" placeholder="Enter book ID">
-            <input type="text" name="review" placeholder="Enter review">
-            <input type="submit" name="returnBookAndReview" value="Return a book and leave a review">
-        </form>
     </body>
 </html>
