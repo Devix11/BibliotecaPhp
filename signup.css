@@ -1,39 +1,27 @@
-/* Stili per il body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+* {
+    font-family: 'Montserrat';
+    font-style: italic;
+}
+
+body{
+    background-color: #F1F1F1;
     margin: 0;
     padding: 0;
     text-align: center;
+    padding-top: 4%;
+
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bolder;
 }
 
-/* Stili per l'intestazione (h1) */
-h1 {
-    color: #333;
-    margin-top: 50px;
-}
-
-/* Stili per il paragrafo (p) */
-p {
-    font-size: 18px;
-    color: #666;
-    margin: 20px 0;
-}
-
-/* Stili per i pulsanti */
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+button:hover{
+    background-color: #dbdbdb;
     cursor: pointer;
-}
-
-/* Stili per separare i pulsanti */
-button + button {
-    margin-left: 20px;
 }
 
 /* Stili per i link all'interno dei pulsanti */
@@ -42,19 +30,14 @@ button a {
     text-decoration: none;
 }
 
-/* Hover effect per i pulsanti */
-button:hover {
-    background-color: #0056b3;
-}
-
 /* Stili per il form di registrazione */
 .form {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Stili per le etichette dei campi del modulo */
@@ -66,7 +49,6 @@ button:hover {
 }
 
 /* Stili per gli input dei campi del modulo */
-.form input[type="text"],
 .form input[type="email"],
 .form input[type="password"],
 .form select {
@@ -80,26 +62,22 @@ button:hover {
     font-style: bold;
 }
 
-/* Stili per il pulsante di invio del modulo */
-.form button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Hover effect per il pulsante di invio del modulo */
-.form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 .form select option[value="user"],
 .form select option[value="admin"] {
-    text-align: center;
+    text-align: left;
     font-size: 20px;
     font-style: bold;
-    margin-right: 20%;
+}
+
+input[type="checkbox"]{
+    font-size: 0.5em;
+}
+
+button {
+    font-size: 25px;
+    border-radius: 15px;
+    border-width: 1.5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding: 12px 18px;
 }
