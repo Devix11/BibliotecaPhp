@@ -151,35 +151,31 @@
         <title>Dashboard</title>
     </head>
     <body>
-        <!-- Pulsante di logout -->
-        <form action="dashboard_user.php" class="logout" method="post">
-            <table>
+        <table>
+            <!-- Pulsante di logout -->
+            <form action="dashboard_user.php" class="logout" method="post">
                 <tr>
                     <th><p>Logout</p></th>
                     <th><input type="submit" name="logout" value="Logout"></th>
                 </tr>
-            </table>
-        </form>
+            </form>
 
-        <!-- Pulsante di eliminazione dell'account -->
-        <form action="dashboard_user.php" class="deleteAccount" method="post">
-            <table>
+            <!-- Pulsante di eliminazione dell'account -->
+            <form action="dashboard_user.php" class="deleteAccount" method="post">
                 <tr>
                     <th><p>Elimina account</p></th>
                     <th><input type="submit" name="deleteAccount" value="Elimina account"></th>
                 </tr>
-            </table>
-        </form>
+            </form>
 
-        <!-- Pulsante per mostrare i libri disponibili -->
-        <form action="dashboard_user.php" class="displayBooks" method="post">
-            <table>
+            <!-- Pulsante per mostrare i libri disponibili -->
+            <form action="dashboard_user.php" class="displayBooks" method="post">
                 <tr>
                     <th><p>Mostra libri disponibili</p></th>
                     <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
                 </tr>
-            </table>
-        </form>
+            </form>
+        </table>
 
         <!-- Pulsante per cercare libri per nome -->
         <form action="dashboard_user.php" class="searchByName" method="post">
@@ -211,33 +207,5 @@
             <input type="text" name="review" placeholder="Inserisci una recensione">
             <input type="submit" name="returnBookAndReview" value="Restituisci un libro e lascia una recensione">
         </form>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-        <table>
-            <!-- Pulsante di logout -->
-            <form action="dashboard_user.php" class="logout" method="post">
-                <tr>
-                    <th><p>Logout</p></th>
-                    <th><input type="submit" name="logout" value="Logout"></th>
-                </tr>
-            </form>
-
-            <!-- Pulsante di eliminazione dell'account -->
-            <form action="dashboard_user.php" class="deleteAccount" method="post">
-                <tr>
-                    <th><p>Elimina account</p></th>
-                    <th><input type="submit" name="deleteAccount" value="Elimina account"></th>
-                </tr>
-            </form>
-
-            <!-- Pulsante per mostrare i libri disponibili -->
-            <form action="dashboard_user.php" class="displayBooks" method="post">
-                <tr>
-                    <th><p>Mostra libri disponibili</p></th>
-                    <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
-                </tr>
-            </form>
-        </table>
     </body>
 </html>
