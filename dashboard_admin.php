@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </tr>
     <?php foreach ($books as $book) { ?>
         <tr>
-            <div class="flex items-center border-b border-teal-500 py-2">
+            <table class="flex items-center border-b border-teal-500 py-2">
             <form method="POST" action="update_book.php" class="w-full max-w-sm">
                 <td><?php echo $book['id']; ?></td>
                 <td><input type="hidden" name="book_id" value="<?php echo $book['id']; ?>"></td>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
                 <td><input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1 px-2 rounded" type="submit" name="updateBook" value="Aggiorna"></td>
             </form>
-            </div>
+    </table>
         </tr>
     <?php } ?>
 </table>
