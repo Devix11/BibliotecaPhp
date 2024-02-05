@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Azione</th>
             </tr>
                 <?php foreach ($books as $book) { ?>
-                    <form method="POST" action="update_book.php">
+                    <form method="POST" action="update_book.php" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <tr>
                             <td><?php echo $book['id']; ?></td>
                             <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
