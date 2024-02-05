@@ -127,7 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tr>
             <?php foreach ($users as $user) { ?>
             <tr>
-                <form method="POST" action="update_user.php">
+            <table class="flex items-center border-b border-teal-500 py-2">
+                <form method="POST" action="update_user.php" class="w-full max-w-sm">
                     <td><?php echo $user['id']; ?></td>
                     <td><input type="text" name="user_name" value="<?php echo $user['nome']; ?>"></td>
                     <td><input type="text" name="user_surname" value="<?php echo $user['cognome']; ?>"></td>
@@ -136,9 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><input type="text" name="user_admin" value="<?php echo $user['adm']; ?>"></td>
                     <td>
                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                        <input type="submit" value="Aggiorna">
+                        <input class="flex-shrink-0 bg-transparent hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-gray py-1 px-2 rounded" type="submit" value="Aggiorna">
                     </td>
                 </form>
+                </table>
             </tr>
             <?php } ?>
         </table>
