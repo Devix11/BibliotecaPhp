@@ -94,19 +94,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tr>
                 <?php foreach ($books as $book) { ?>
                     <form method="POST" action="update_book.php" class="w-full max-w-sm">
-                        <div class></div>
-                        <tr>
-                            <td><?php echo $book['id']; ?></td>
-                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <td><input type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
-                            <td><input type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
-                            <td><input type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
-                            <td><input type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
-                            <td><input type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
-                            <td><input type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
-                            <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
-                            <td><input type="submit" name="updateBook" value="Aggiorna"></td>
-                        </tr>
+                        <div class="flex items-center border-b border-teal-500 py-2">
+                            <tr>
+                                <td><?php echo $book['id']; ?></td>
+                                <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                                <td><input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="newTitle" value="<?php echo $book['titolo']; ?>"></td>
+                                <td><input type="text" name="newAuthor" value="<?php echo $book['autore']; ?>"></td>
+                                <td><input type="text" name="newIsbn" value="<?php echo $book['isbn']; ?>"></td>
+                                <td><input type="text" name="newGenre" value="<?php echo $book['genere']; ?>"></td>
+                                <td><input type="text" name="newYear" value="<?php echo $book['annoPubblicazione']; ?>"></td>
+                                <td><input type="text" name="newQuantity" value="<?php echo $book['quantita']; ?>"></td>
+                                <td><textarea name="newDescription"><?php echo $book['descrizione']; ?></textarea></td>
+                                <td><input type="submit" name="updateBook" value="Aggiorna"></td>
+                            </tr>
+                        </div>
                     </form>
                 <?php } ?>
             </tr>
