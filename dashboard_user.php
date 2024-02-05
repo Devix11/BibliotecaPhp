@@ -153,8 +153,10 @@
     <body>
         <!-- Pulsante di logout -->
         <form action="dashboard_user.php" class="logout" method="post">
-            <p>Logout</p>
-            <input type="submit" name="logout" value="Logout">
+            <td>
+                <p>Logout</p>
+                <input type="submit" name="logout" value="Logout">
+            </td>
         </form>
 
         <!-- Pulsante di eliminazione dell'account -->
