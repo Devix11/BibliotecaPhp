@@ -61,6 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["id"] = $id;
               $_SESSION["username"] = $username;
               $_SESSION["loggedin"] = TRUE;
+              //query per controllare se è admin
+              $sql = "SELECT adm FROM users WHERE username = $username OR email = $username";
+              $result=mysqli_query($link, $sql);
+              if($result=1){
+                $_SESSION["admin"] = $admin;
+              }
 
               # Reindirizza l'utente alla pagina index
               echo "<script>" . "window.location.href='./'" . "</script>";
