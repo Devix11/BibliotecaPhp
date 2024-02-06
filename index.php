@@ -33,7 +33,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
     <div class="row justify-content-center">
       <div class="col-lg-5 text-center">
         <h4 class="my-4">Ciao, <?= htmlspecialchars($_SESSION["username"]); ?></h4>
-        <a href="./dasboard_user.php" class="btn btn-primary">Dashboard Utente</a>
+        <a href="./dashboard_user.php" class="btn btn-primary">Dashboard Utente</a>
         <a href="./dashboard_admin.php" class="btn btn-primary">Dashboard Admin (Permessi richiesti)</a>
         <a href="./logout.php" class="btn btn-primary">Esci</a>
       </div>
