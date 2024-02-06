@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       $admin = $row['adm'];
 
                       // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo booleano)
-                      if ($admin == 1) {
+                      if ($admin == 'admin') {
                         echo '<script>console.log("3 if!"); </script>'; 
                           $_SESSION["admin"] = $admin;
                           var_dump($_SESSION);
