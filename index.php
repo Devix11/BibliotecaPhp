@@ -32,8 +32,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
     <!-- Profilo utente -->
     <div class="row justify-content-center">
       <div class="col-lg-5 text-center">
-        <img src="./img/blank-avatar.jpg" class="img-fluid rounded" alt="Avatar utente" width="180">
         <h4 class="my-4">Ciao, <?= htmlspecialchars($_SESSION["username"]); ?></h4>
+        <a href="./user_dashboard.php" class="btn btn-primary">Dashboard Utente</a>
+        <a href="./admin_dashboard.php" class="btn btn-primary">Dashboard Admin (Permessi richiesti)</a>
         <a href="./logout.php" class="btn btn-primary">Esci</a>
       </div>
     </div>
