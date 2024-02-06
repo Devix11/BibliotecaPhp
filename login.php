@@ -77,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo booleano)
                       if ($admin == 1) {
                           $_SESSION["admin"] = $admin;
+                          var_dump($_SESSION);
                       }
                   } else {
                       // Gestire il caso in cui non è stato trovato alcun utente con il nome utente o l'email forniti
