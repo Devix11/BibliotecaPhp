@@ -61,11 +61,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["id"] = $id;
               $_SESSION["username"] = $username;
               $_SESSION["loggedin"] = TRUE;
-              //query per controllare se è admin
-              $sql = "SELECT adm FROM users WHERE username = $username OR email = $username";
-              $result=mysqli_query($link, $sql);
-              if($result=1){
-                $_SESSION["admin"] = $admin;
+              // Sanitizza l'input per prevenire l'SQL injection
+              $username = mysqli_real_escape_string($link, $username);
+
+              // Query per verificare se l'utente è un amministratore
+              $sql = "SELECT adm FROM users WHERE username = '$username' OR email = '$username'";
+              $result = mysqli_query($link, $sql);
+
+              if ($result) {
+                  // Verifica se sono state restituite delle righe
+                  if (mysqli_num_rows($result) > 0) {
+                      $row = mysqli_fetch_assoc($result);
+                      $admin = $row['adm'];
+
+                      // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo booleano)
+                      if ($admin == 1) {
+                          $_SESSION["admin"] = $admin;
+                      }
+                  } else {
+                      // Gestire il caso in cui non è stato trovato alcun utente con il nome utente o l'email forniti
+                      // Puoi impostare un messaggio di errore o reindirizzare l'utente a una pagina diversa.
+                  }
+              } else {
+                  // Gestire il caso in cui si è verificato un errore nell'esecuzione della query SQL
               }
 
               # Reindirizza l'utente alla pagina index
