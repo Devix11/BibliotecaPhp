@@ -11,6 +11,12 @@
 //metodi per la connessione al database e per la query dentro la classe Database
 //display error
 ini_set('display_errors', 1);
+//controllo che l'utente loggato sia un admin
+session_start();
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    header("Location: login.php");
+    exit;
+}
 
 class Database {
 
