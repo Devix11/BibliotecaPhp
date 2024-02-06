@@ -1,8 +1,8 @@
 <?php
 define("DB_SERVER", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "registered");
+define("DB_USERNAME", "phpmyadmin");
+define("DB_PASSWORD", "cioane11");
+define("DB_NAME", "biblioteca2");
 
 # Connection
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
