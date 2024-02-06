@@ -65,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $username = mysqli_real_escape_string($link, $username);
 
               // Query per verificare se l'utente è un amministratore
+              echo '<script>console.log("CIAO!"); </script>'; 
+              echo '<script>console.log("CIAO!"); </script>'; 
+              echo '<script>console.log("CIAO!"); </script>'; 
               $sql = "SELECT adm FROM users WHERE username = '$username' OR email = '$username'";
               $result = mysqli_query($link, $sql);
 
