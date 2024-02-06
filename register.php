@@ -1,128 +1,128 @@
 <?php
-//visualizza errori
+// visualizza errori
 ini_set('display_errors', 1);
-# Include connection
+# Includi la connessione
 require_once "./config.php";
 
-# Define variables and initialize with empty values
+# Definisci le variabili e inizializzale con valori vuoti
 $username_err = $email_err = $password_err = "";
 $username = $email = $password = "";
 
-# Processing form data when form is submitted
+# Elabora i dati del modulo quando il modulo viene inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  # Validate username
+  # Valida il nome utente
   if (empty(trim($_POST["username"]))) {
-    $username_err = "Please enter a username.";
+    $username_err = "Inserisci un nome utente.";
   } else {
     $username = trim($_POST["username"]);
     if (!ctype_alnum(str_replace(array("@", "-", "_"), "", $username))) {
-      $username_err = "Username can only contain letters, numbers and symbols like '@', '_', or '-'.";
+      $username_err = "Il nome utente può contenere solo lettere, numeri e simboli come '@', '_', o '-'.";
     } else {
-      # Prepare a select statement
+      # Prepara una query di selezione
       $sql = "SELECT id FROM users WHERE username = ?";
 
       if ($stmt = mysqli_prepare($link, $sql)) {
-        # Bind variables to the statement as parameters
+        # Associa le variabili alla query come parametri
         mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-        # Set parameters
+        # Imposta i parametri
         $param_username = $username;
 
-        # Execute the prepared statement 
+        # Esegui la query preparata
         if (mysqli_stmt_execute($stmt)) {
-          # Store result
+          # Memorizza il risultato
           mysqli_stmt_store_result($stmt);
 
-          # Check if username is already registered
+          # Verifica se il nome utente è già registrato
           if (mysqli_stmt_num_rows($stmt) == 1) {
-            $username_err = "This username is already registered.";
+            $username_err = "Questo nome utente è già registrato.";
           }
         } else {
-          echo "<script>" . "alert('Oops! Something went wrong. Please try again later.')" . "</script>";
+          echo "<script>" . "alert('Oops! Si è verificato un errore. Riprova più tardi.')" . "</script>";
         }
 
-        # Close statement 
+        # Chiudi la query
         mysqli_stmt_close($stmt);
       }
     }
   }
 
-  # Validate email 
+  # Valida l'email
   if (empty(trim($_POST["email"]))) {
-    $email_err = "Please enter an email address";
+    $email_err = "Inserisci un indirizzo email.";
   } else {
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $email_err = "Please enter a valid email address.";
+      $email_err = "Inserisci un indirizzo email valido.";
     } else {
-      # Prepare a select statement
+      # Prepara una query di selezione
       $sql = "SELECT id FROM users WHERE email = ?";
 
       if ($stmt = mysqli_prepare($link, $sql)) {
-        # Bind variables to the statement as parameters
+        # Associa le variabili alla query come parametri
         mysqli_stmt_bind_param($stmt, "s", $param_email);
 
-        # Set parameters
+        # Imposta i parametri
         $param_email = $email;
 
-        # Execute the prepared statement 
+        # Esegui la query preparata
         if (mysqli_stmt_execute($stmt)) {
-          # Store result
+          # Memorizza il risultato
           mysqli_stmt_store_result($stmt);
 
-          # Check if email is already registered
+          # Verifica se l'email è già registrata
           if (mysqli_stmt_num_rows($stmt) == 1) {
-            $email_err = "This email is already registered.";
+            $email_err = "Questa email è già registrata.";
           }
         } else {
-          echo "<script>" . "alert('Oops! Something went wrong. Please try again later.');" . "</script>";
+          echo "<script>" . "alert('Oops! Si è verificato un errore. Riprova più tardi.');" . "</script>";
         }
 
-        # Close statement
+        # Chiudi la query
         mysqli_stmt_close($stmt);
       }
     }
   }
 
-  # Validate password
+  # Valida la password
   if (empty(trim($_POST["password"]))) {
-    $password_err = "Please enter a password.";
+    $password_err = "Inserisci una password.";
   } else {
     $password = trim($_POST["password"]);
     if (strlen($password) < 8) {
-      $password_err = "Password must contain at least 8 or more characters.";
+      $password_err = "La password deve contenere almeno 8 caratteri.";
     }
   }
 
-  # Check input errors before inserting data into database
+  # Verifica gli errori di input prima di inserire i dati nel database
   if (empty($username_err) && empty($email_err) && empty($password_err)) {
-    # Prepare an insert statement
+    # Prepara una query di inserimento
     $sql = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
-      # Bind varibales to the prepared statement as parameters
+      # Associa le variabili alla query preparata come parametri
       mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
 
-      # Set parameters
+      # Imposta i parametri
       $param_username = $username;
       $param_email = $email;
       $param_password = password_hash($password, PASSWORD_DEFAULT);
 
-      # Execute the prepared statement
+      # Esegui la query preparata
       if (mysqli_stmt_execute($stmt)) {
-        echo "<script>" . "alert('Registeration completed successfully. Login to continue.');" . "</script>";
+        echo "<script>" . "alert('Registrazione completata con successo. Accedi per continuare.');" . "</script>";
         echo "<script>" . "window.location.href='./login.php';" . "</script>";
         exit;
       } else {
-        echo "<script>" . "alert('Oops! Something went wrong. Please try again later.');" . "</script>";
+        echo "<script>" . "alert('Oops! Si è verificato un errore. Riprova più tardi.');" . "</script>";
       }
 
-      # Close statement
+      # Chiudi la query
       mysqli_stmt_close($stmt);
     }
   }
 
-  # Close connection
+  # Chiudi la connessione
   mysqli_close($link);
 }
 ?>
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User login system</title>
+  <title>Sistema di accesso utente</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
@@ -146,17 +146,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row min-vh-100 justify-content-center align-items-center">
       <div class="col-lg-5">
         <div class="form-wrap border rounded p-4">
-          <h1>Sign up</h1>
-          <p>Please fill this form to register</p>
-          <!-- form starts here -->
+          <h1>Registrati</h1>
+          <p>Compila questo modulo per registrarti</p>
+          <!-- il modulo inizia qui -->
           <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
+              <label for="username" class="form-label">Nome utente</label>
               <input type="text" class="form-control" name="username" id="username" value="<?= $username; ?>">
               <small class="text-danger"><?= $username_err; ?></small>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Email Address</label>
+              <label for="email" class="form-label">Indirizzo email</label>
               <input type="email" class="form-control" name="email" id="email" value="<?= $email; ?>">
               <small class="text-danger"><?= $email_err; ?></small>
             </div>
@@ -167,14 +167,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="togglePassword">
-              <label for="togglePassword" class="form-check-label">Show Password</label>
+              <label for="togglePassword" class="form-check-label">Mostra password</label>
             </div>
             <div class="mb-3">
-              <input type="submit" class="btn btn-primary form-control" name="submit" value="Sign Up">
+              <input type="submit" class="btn btn-primary form-control" name="submit" value="Registrati">
             </div>
-            <p class="mb-0">Already have an account ? <a href="./login.php">Log In</a></p>
+            <p class="mb-0">Hai già un account? <a href="./login.php">Accedi</a></p>
           </form>
-          <!-- form ends here -->
+          <!-- il modulo finisce qui -->
         </div>
       </div>
     </div>

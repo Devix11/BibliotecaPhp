@@ -1,91 +1,91 @@
 <?php
-//visualizza errori
+// visualizza errori
 ini_set('display_errors', 1);
-# Initialize session
+# Inizializza la sessione
 session_start();
 
-# Check if user is already logged in, If yes then redirect him to index page
+# Controlla se l'utente è già loggato, se sì, reindirizzalo alla pagina index
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE) {
   echo "<script>" . "window.location.href='./'" . "</script>";
   exit;
 }
 
-# Include connection
+# Includi la connessione
 require_once "./config.php";
 
-# Define variables and initialize with empty values
+# Definisci le variabili e inizializzale con valori vuoti
 $user_login_err = $user_password_err = $login_err = "";
 $user_login = $user_password = "";
 
-# Processing form data when form is submitted
+# Elabora i dati del modulo quando il modulo viene inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty(trim($_POST["user_login"]))) {
-    $user_login_err = "Please enter your username or an email id.";
+    $user_login_err = "Inserisci il tuo nome utente o un indirizzo email.";
   } else {
     $user_login = trim($_POST["user_login"]);
   }
 
   if (empty(trim($_POST["user_password"]))) {
-    $user_password_err = "Please enter your password.";
+    $user_password_err = "Inserisci la tua password.";
   } else {
     $user_password = trim($_POST["user_password"]);
   }
 
-  # Validate credentials 
+  # Convalida le credenziali
   if (empty($user_login_err) && empty($user_password_err)) {
-    # Prepare a select statement
+    # Prepara una query di selezione
     $sql = "SELECT id, username, password FROM users WHERE username = ? OR email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
-      # Bind variables to the statement as parameters
+      # Associa le variabili alla query come parametri
       mysqli_stmt_bind_param($stmt, "ss", $param_user_login, $param_user_login);
 
-      # Set parameters
+      # Imposta i parametri
       $param_user_login = $user_login;
 
-      # Execute the statement
+      # Esegui la query
       if (mysqli_stmt_execute($stmt)) {
-        # Store result
+        # Memorizza il risultato
         mysqli_stmt_store_result($stmt);
 
-        # Check if user exists, If yes then verify password
+        # Controlla se l'utente esiste, se sì, verifica la password
         if (mysqli_stmt_num_rows($stmt) == 1) {
-          # Bind values in result to variables
+          # Associa i valori del risultato alle variabili
           mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
 
           if (mysqli_stmt_fetch($stmt)) {
-            # Check if password is correct
+            # Controlla se la password è corretta
             if (password_verify($user_password, $hashed_password)) {
 
-              # Store data in session variables
+              # Memorizza i dati nelle variabili di sessione
               $_SESSION["id"] = $id;
               $_SESSION["username"] = $username;
               $_SESSION["loggedin"] = TRUE;
 
-              # Redirect user to index page
+              # Reindirizza l'utente alla pagina index
               echo "<script>" . "window.location.href='./'" . "</script>";
               exit;
             } else {
-              # If password is incorrect show an error message
-              $login_err = "The email or password you entered is incorrect.";
+              # Se la password è errata, mostra un messaggio di errore
+              $login_err = "L'email o la password inserita non è corretta.";
             }
           }
         } else {
-          # If user doesn't exists show an error message
-          $login_err = "Invalid username or password.";
+          # Se l'utente non esiste, mostra un messaggio di errore
+          $login_err = "Nome utente o password non validi.";
         }
       } else {
-        echo "<script>" . "alert('Oops! Something went wrong. Please try again later.');" . "</script>";
+        echo "<script>" . "alert('Oops! Si è verificato un errore. Riprova più tardi.');" . "</script>";
         echo "<script>" . "window.location.href='./login.php'" . "</script>";
         exit;
       }
 
-      # Close statement
+      # Chiudi la query
       mysqli_stmt_close($stmt);
     }
   }
 
-  # Close connection
+  # Chiudi la connessione
   mysqli_close($link);
 }
 ?>
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User login system</title>
+  <title>Sistema di accesso utente</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
@@ -114,12 +114,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         <div class="form-wrap border rounded p-4">
-          <h1>Log In</h1>
-          <p>Please login to continue</p>
-          <!-- form starts here -->
+          <h1>Accedi</h1>
+          <p>Effettua il login per continuare</p>
+          <!-- il modulo inizia qui -->
           <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
             <div class="mb-3">
-              <label for="user_login" class="form-label">Email or username</label>
+              <label for="user_login" class="form-label">Email o nome utente</label>
               <input type="text" class="form-control" name="user_login" id="user_login" value="<?= $user_login; ?>">
               <small class="text-danger"><?= $user_login_err; ?></small>
             </div>
@@ -130,14 +130,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="togglePassword">
-              <label for="togglePassword" class="form-check-label">Show Password</label>
+              <label for="togglePassword" class="form-check-label">Mostra password</label>
             </div>
             <div class="mb-3">
-              <input type="submit" class="btn btn-primary form-control" name="submit" value="Log In">
+              <input type="submit" class="btn btn-primary form-control" name="submit" value="Accedi">
             </div>
-            <p class="mb-0">Don't have an account ? <a href="./register.php">Sign Up</a></p>
+            <p class="mb-0">Non hai un account? <a href="./register.php">Registrati</a></p>
           </form>
-          <!-- form ends here -->
+          <!-- il modulo finisce qui -->
         </div>
       </div>
     </div>
