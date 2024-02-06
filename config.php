@@ -6,10 +6,10 @@ define("DB_USERNAME", "phpmyadmin");
 define("DB_PASSWORD", "ciaone11");
 define("DB_NAME", "biblioteca2");
 
-# Connection
+# Connessione
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-# Check connection
+# Controllo connessione
 if (!$link) {
   die("Connection failed: " . mysqli_connect_error());
 }

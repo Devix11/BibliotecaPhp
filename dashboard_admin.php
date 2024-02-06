@@ -13,8 +13,8 @@
 ini_set('display_errors', 1);
 //controllo che l'utente loggato sia un admin
 session_start();
-if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-    //si visualizza a schermo non hai i permessi, c'è un pulsante per tornare a index.php
+if ($_SESSION['account_type'] !== 'admin') {
+    // Non hai i permessi per visualizzare questa pagina
     echo "<h1>Non hai i permessi per visualizzare questa pagina</h1>";
     echo "<a href='index.php'>Torna alla home</a>";
     exit;
