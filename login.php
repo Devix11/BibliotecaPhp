@@ -86,11 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           var_dump($_SESSION);
                       }
                   } else {
-                      // Gestire il caso in cui non è stato trovato alcun utente con il nome utente o l'email forniti
-                      // Puoi impostare un messaggio di errore o reindirizzare l'utente a una pagina diversa.
+                    
                   }
               } else {
                   // Gestire il caso in cui si è verificato un errore nell'esecuzione della query SQL
+                  echo "<script>" . "alert('Oops! Si è verificato un errore. Riprova più tardi.');" . "</script>";
               }
 
               # Reindirizza l'utente alla pagina index
