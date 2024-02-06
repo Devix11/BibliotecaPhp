@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 define("DB_SERVER", "localhost");
 define("DB_USERNAME", "phpmyadmin");
-define("DB_PASSWORD", "cioane11");
+define("DB_PASSWORD", "ciaone11");
 define("DB_NAME", "biblioteca2");
 
 # Connection
