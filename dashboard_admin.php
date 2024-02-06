@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 //controllo che l'utente loggato sia un admin
 session_start();
 // Verifica se l'utente è amministratore
-if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== 1) {
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== 'admin') {
     // L'utente non ha i permessi di amministratore
     // Puoi personalizzare il messaggio di errore o reindirizzare l'utente a una pagina di errore
     echo "<h1>Accesso negato</h1>";
