@@ -73,12 +73,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               if ($result) {
                   // Verifica se sono state restituite delle righe
+                  echo '<script>console.log("1 if!"); </script>'; 
                   if (mysqli_num_rows($result) > 0) {
+                    echo '<script>console.log("2 if!"); </script>'; 
                       $row = mysqli_fetch_assoc($result);
                       $admin = $row['adm'];
 
                       // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo booleano)
                       if ($admin == 1) {
+                        echo '<script>console.log("3 if!"); </script>'; 
                           $_SESSION["admin"] = $admin;
                           var_dump($_SESSION);
                       }
