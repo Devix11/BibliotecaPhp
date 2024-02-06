@@ -1,4 +1,6 @@
 <?php
+//visualizza errori
+ini_set('display_errors', 1);
 define("DB_SERVER", "localhost");
 define("DB_USERNAME", "phpmyadmin");
 define("DB_PASSWORD", "cioane11");

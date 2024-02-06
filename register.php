@@ -1,4 +1,6 @@
 <?php
+//visualizza errori
+ini_set('display_errors', 1);
 # Include connection
 require_once "./config.php";
 
