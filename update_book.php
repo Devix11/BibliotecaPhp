@@ -2,7 +2,6 @@
     // update_book.php
     $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 
-
     //display error
     ini_set('display_errors', 1);
 
@@ -20,7 +19,6 @@
         $newQuantity = $row['quantita'];
         $newDescription = $row['descrizione'];
 
-
         $newTitle = $_POST['newTitle'];
         $newAuthor = $_POST['newAuthor'];
         $newIsbn = $_POST['newIsbn'];
@@ -33,7 +31,6 @@
             header('Location: dashboard_admin.php');
             exit();
         }
-
         
         $updateQuery = "UPDATE libri SET titolo = '$newTitle', autore = '$newAuthor', isbn = '$newIsbn', genere = '$newGenre', annoPubblicazione = '$newYear', quantita = '$newQuantity', descrizione = '$newDescription' WHERE id = '$bookId'";
         mysqli_query($db, $updateQuery);
@@ -41,5 +38,4 @@
         header('Location: dashboard_admin.php');
         exit();
     }
-
 ?>

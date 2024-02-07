@@ -1,11 +1,11 @@
 // Toggle password visibility
-const userPasswordEl = document.querySelector("#password");
-const togglePasswordEl = document.querySelector("#togglePassword");
+const userPassword = document.querySelector("#password");
+const togglePassword = document.querySelector("#togglePassword");
 
-togglePasswordEl.addEventListener("click", function () {
+togglePassword.addEventListener("click", function () {
   if (this.checked === true) {
-    userPasswordEl.setAttribute("type", "text");
+    userPassword.setAttribute("type", "text");
   } else {
-    userPasswordEl.setAttribute("type", "password");
+    userPassword.setAttribute("type", "password");
   }
 });

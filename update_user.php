@@ -2,11 +2,8 @@
     // update_user.php
     $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
 
-
     //display error
     ini_set('display_errors', 1);
-
-
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userId = strip_tags(html_entities($_POST['user_id']));
