@@ -61,13 +61,9 @@
                 $_SESSION["id"] = $id;
                 $_SESSION["username"] = $username;
                 $_SESSION["loggedin"] = TRUE;
-                // Sanitizza l'input per prevenire l'SQL injection
                 $username = mysqli_real_escape_string($link, $username);
 
                 // Query per verificare se l'utente è un amministratore
-                echo '<script>console.log("CIAO!"); </script>'; 
-                echo '<script>console.log("CIAO!"); </script>'; 
-                echo '<script>console.log("CIAO!"); </script>'; 
                 $sql = "SELECT adm FROM users WHERE username = '$username' OR email = '$username'";
                 $result = mysqli_query($link, $sql);
 
@@ -79,7 +75,7 @@
                     $row = mysqli_fetch_assoc($result);
                     $admin = $row['adm'];
 
-                    // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo booleano)
+                    // Verifica se l'utente è un amministratore (supponendo che 'adm' sia un campo che abbuia valore admin per gli amm)
                     if ($admin == 'admin') {
                       echo '<script>console.log("3 if!"); </script>'; 
                       $_SESSION["admin"] = $admin;
