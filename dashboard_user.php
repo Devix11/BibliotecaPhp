@@ -137,7 +137,7 @@
         $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
         $row = mysqli_fetch_array($result);
         $newAvailability = $row['disponibilita'] + 1;
-        echo 'mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'")';
+        mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'");
         mysqli_query($db, "INSERT INTO recensioni (id_libro, recensione) VALUES ('" . $bookId . "', '" . $review . "')");
     }
 ?>
@@ -188,7 +188,7 @@
         <!-- Pulsante per cercare libri per autore -->
         <form action="dashboard_user.php" class="searchByAuthor" method="post">
             <input type="text" name="searchByAuthor" placeholder="Inserisci il nome dell'autore">
-            <input type="submit" name="searchBooksByAuthor" value="Cerca libri per autore">
+            <input type="submit" name="searchBooksByAuthor" value="Cerca libri per autore">    
         </form>
 
         <!-- Pulsante per cercare libri per categoria -->
