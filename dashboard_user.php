@@ -188,7 +188,7 @@
         <form action="dashboard_user.php" class="searchByAuthor" method="post">
             <input type="text" name="searchByAuthor" placeholder="Inserisci il nome dell'autore">
             <input type="submit" name="searchBooksByAuthor" value="Cerca libri per autore">
-            <?php echo $return?>
+            <?php echo $result?>
         </form>
 
         <!-- Pulsante per cercare libri per categoria -->
