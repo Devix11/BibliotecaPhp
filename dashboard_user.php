@@ -123,9 +123,9 @@
         mysqli_close($db);
     }
 
-    if(!empty($_POST['displayBooks'])) {
+    /**if(!empty($_POST['displayBooks'])) {
         displayBooks();
-    }
+    }**/
 
     // Cerca libri per nome
     function searchBooksByName($name){
