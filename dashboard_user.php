@@ -122,9 +122,9 @@
         mysqli_close($db);
     }
 
-    if(isset($_POST['displayBooks'])) {
-        displayBooks();
-    }
+   // if(isset($_POST['displayBooks'])) {
+     //   displayBooks();
+    //}
 
     // Cerca libri per nome
     function searchBooksByName($name){
@@ -331,6 +331,11 @@
                     <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
                 </tr>
             </form>
+            <?php 
+            if(isset($_POST['displayBooks'])) {
+            displayBooks();
+            }
+        ?>
         </table>
 
         <!-- Pulsante per cercare libri per nome -->
