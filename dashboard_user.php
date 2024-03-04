@@ -123,7 +123,7 @@
         mysqli_close($db);
     }
 
-    if(isset($_POST['displayBooks'])) {
+    if(!empty($_POST['displayBooks'])) {
         displayBooks();
     }
 
