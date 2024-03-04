@@ -107,6 +107,7 @@
     function searchBooksByName($name){
         // Funzione per cercare i libri per nome
         $result = mysqli_query($db, "SELECT * FROM libri WHERE nome='" . $name . "'");
+        return $result;
     }
 
     // Cerca libri per autore
@@ -136,7 +137,7 @@
         $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
         $row = mysqli_fetch_array($result);
         $newAvailability = $row['disponibilita'] + 1;
-        mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'");
+        echo 'mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'")';
         mysqli_query($db, "INSERT INTO recensioni (id_libro, recensione) VALUES ('" . $bookId . "', '" . $review . "')");
     }
 ?>
@@ -181,7 +182,7 @@
         <form action="dashboard_user.php" class="searchByName" method="post">
             <input type="text" name="searchByName" placeholder="Inserisci il nome del libro">
             <input type="submit" name="searchBooksByName" value="Cerca libri per nome">
-        </form>b
+        </form>
 
         <!-- Pulsante per cercare libri per autore -->
         <form action="dashboard_user.php" class="searchByAuthor" method="post">
