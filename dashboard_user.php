@@ -106,8 +106,20 @@
         }
         // Funzione per mostrare tutti i libri attualmente in prestito
         $result = mysqli_query($db, "SELECT * FROM libri WHERE disponibilita < 1");
-        echo($result);
-        $db -> close();
+    
+        if (!$result) {
+            die("Errore nella query: " . mysqli_error($db));
+        }
+    
+        // Fetching and displaying the results
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "Titolo: " . $row['titolo'] . "<br>";
+            echo "Autore: " . $row['autore'] . "<br>";
+            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+        }
+    
+        // Closing the database connection
+        mysqli_close($db);
     }
 
     // Cerca libri per nome
@@ -118,23 +130,50 @@
            die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per cercare i libri per nome
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE nome='" . $name . "'");
-        echo($result);
-        $db -> close();
+        // Using prepared statement to prevent SQL injection
+        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE nome=?");
+        mysqli_stmt_bind_param($stmt, "s", $name);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        // Fetching and displaying the results
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "Titolo: " . $row['titolo'] . "<br>";
+            echo "Autore: " . $row['autore'] . "<br>";
+            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+        }
+    
+        // Closing the statement and the database connection
+        mysqli_stmt_close($stmt);
+        mysqli_close($db);
     }
+    
 
     // Cerca libri per autore
     function searchBooksByAuthor($author){
         $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
         // Verifica se la connessione è attiva
         if (mysqli_connect_error()) {
-           die("Errore nella connessione al database: " . mysqli_connect_error());
+            die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per cercare i libri per autore
         $result = mysqli_query($db, "SELECT * FROM libri WHERE autore='" . $author . "'");
-        echo($result);
-        $db -> close();
+    
+        if (!$result) {
+            die("Errore nella query: " . mysqli_error($db));
+        }
+    
+        // Fetching and displaying the results
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "Titolo: " . $row['titolo'] . "<br>";
+            echo "Autore: " . $row['autore'] . "<br>";
+            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+        }
+    
+        // Closing the database connection
+        mysqli_close($db);
     }
+    
 
     // Cerca libri per categoria
     function searchBooksByCategory($category){
@@ -144,10 +183,24 @@
            die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per cercare i libri per categoria
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE categoria='" . $category . "'");
-        echo($result);
-        $db -> close();
+        // Using prepared statement to prevent SQL injection
+        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE categoria=?");
+        mysqli_stmt_bind_param($stmt, "s", $category);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        // Fetching and displaying the results
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "Titolo: " . $row['titolo'] . "<br>";
+            echo "Autore: " . $row['autore'] . "<br>";
+            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+        }
+    
+        // Closing the statement and the database connection
+        mysqli_stmt_close($stmt);
+        mysqli_close($db);
     }
+    
 
     // Prendi in prestito un libro
     function borrowBook($bookId){
@@ -157,11 +210,29 @@
            die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per prendere in prestito un libro
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
+        // Using prepared statement to prevent SQL injection
+        $stmt_select = mysqli_prepare($db, "SELECT * FROM libri WHERE id=?");
+        mysqli_stmt_bind_param($stmt_select, "i", $bookId);
+        mysqli_stmt_execute($stmt_select);
+        $result = mysqli_stmt_get_result($stmt_select);
+        
+        if (!$result || mysqli_num_rows($result) == 0) {
+            die("Libro non trovato.");
+        }
+    
         $row = mysqli_fetch_array($result);
         $newAvailability = $row['disponibilita'] - 1;
-        mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'");
+    
+        $stmt_update = mysqli_prepare($db, "UPDATE libri SET disponibilita=? WHERE id=?");
+        mysqli_stmt_bind_param($stmt_update, "ii", $newAvailability, $bookId);
+        mysqli_stmt_execute($stmt_update);
+    
+        // Closing the statement and the database connection
+        mysqli_stmt_close($stmt_select);
+        mysqli_stmt_close($stmt_update);
+        mysqli_close($db);
     }
+    
 
     // Restituisci un libro e lascia una recensione
     function returnBookAndReview($bookId, $review){
@@ -171,12 +242,35 @@
            die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per restituire un libro e lasciare una recensione
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
+        // Using prepared statement to prevent SQL injection
+        $stmt_select = mysqli_prepare($db, "SELECT * FROM libri WHERE id=?");
+        mysqli_stmt_bind_param($stmt_select, "i", $bookId);
+        mysqli_stmt_execute($stmt_select);
+        $result = mysqli_stmt_get_result($stmt_select);
+        
+        if (!$result || mysqli_num_rows($result) == 0) {
+            die("Libro non trovato.");
+        }
+    
         $row = mysqli_fetch_array($result);
         $newAvailability = $row['disponibilita'] + 1;
-        mysqli_query($db, "UPDATE libri SET disponibilita='" . $newAvailability . "' WHERE id='" . $bookId . "'");
-        mysqli_query($db, "INSERT INTO recensioni (id_libro, recensione) VALUES ('" . $bookId . "', '" . $review . "')");
+    
+        $stmt_update = mysqli_prepare($db, "UPDATE libri SET disponibilita=? WHERE id=?");
+        mysqli_stmt_bind_param($stmt_update, "ii", $newAvailability, $bookId);
+        mysqli_stmt_execute($stmt_update);
+    
+        // Inserting review
+        $stmt_insert_review = mysqli_prepare($db, "INSERT INTO recensioni (id_libro, recensione) VALUES (?, ?)");
+        mysqli_stmt_bind_param($stmt_insert_review, "is", $bookId, $review);
+        mysqli_stmt_execute($stmt_insert_review);
+    
+        // Closing the statements and the database connection
+        mysqli_stmt_close($stmt_select);
+        mysqli_stmt_close($stmt_update);
+        mysqli_stmt_close($stmt_insert_review);
+        mysqli_close($db);
     }
+    
 ?>
 
 <!DOCTYPE html>
