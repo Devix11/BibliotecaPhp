@@ -105,7 +105,7 @@
             die("Errore nella connessione al database: " . mysqli_connect_error());
         }
         // Funzione per mostrare tutti i libri attualmente in prestito
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE disponibilita < 1");
+        $result = mysqli_query($db, "SELECT * FROM libri WHERE quantita < 1");
     
         if (!$result) {
             die("Errore nella query: " . mysqli_error($db));
@@ -115,7 +115,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             echo "Titolo: " . $row['titolo'] . "<br>";
             echo "Autore: " . $row['autore'] . "<br>";
-            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+            echo "Disponibilità: " . $row['quantita'] . "<br><br>";
         }
     
         // Closing the database connection
@@ -135,7 +135,7 @@
         }
         // Funzione per cercare i libri per nome
         // Using prepared statement to prevent SQL injection
-        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE nome=?");
+        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE titolo=?");
         mysqli_stmt_bind_param($stmt, "s", $name);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -144,7 +144,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             echo "Titolo: " . $row['titolo'] . "<br>";
             echo "Autore: " . $row['autore'] . "<br>";
-            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+            echo "Disponibilità: " . $row['quantita'] . "<br><br>";
         }
     
         // Closing the statement and the database connection
@@ -175,7 +175,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             echo "Titolo: " . $row['titolo'] . "<br>";
             echo "Autore: " . $row['autore'] . "<br>";
-            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+            echo "Disponibilità: " . $row['quantita'] . "<br><br>";
         }
     
         // Closing the database connection
@@ -196,7 +196,7 @@
         }
         // Funzione per cercare i libri per categoria
         // Using prepared statement to prevent SQL injection
-        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE categoria=?");
+        $stmt = mysqli_prepare($db, "SELECT * FROM libri WHERE genere=?");
         mysqli_stmt_bind_param($stmt, "s", $category);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -205,7 +205,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             echo "Titolo: " . $row['titolo'] . "<br>";
             echo "Autore: " . $row['autore'] . "<br>";
-            echo "Disponibilità: " . $row['disponibilita'] . "<br><br>";
+            echo "Disponibilità: " . $row['quantita'] . "<br><br>";
         }
     
         // Closing the statement and the database connection
@@ -237,9 +237,9 @@
         }
     
         $row = mysqli_fetch_array($result);
-        $newAvailability = $row['disponibilita'] - 1;
+        $newAvailability = $row['quantita'] - 1;
     
-        $stmt_update = mysqli_prepare($db, "UPDATE libri SET disponibilita=? WHERE id=?");
+        $stmt_update = mysqli_prepare($db, "UPDATE libri SET quantita=? WHERE id=?");
         mysqli_stmt_bind_param($stmt_update, "ii", $newAvailability, $bookId);
         mysqli_stmt_execute($stmt_update);
     
@@ -273,9 +273,9 @@
         }
     
         $row = mysqli_fetch_array($result);
-        $newAvailability = $row['disponibilita'] + 1;
+        $newAvailability = $row['quantita'] + 1;
     
-        $stmt_update = mysqli_prepare($db, "UPDATE libri SET disponibilita=? WHERE id=?");
+        $stmt_update = mysqli_prepare($db, "UPDATE libri SET quantita=? WHERE id=?");
         mysqli_stmt_bind_param($stmt_update, "ii", $newAvailability, $bookId);
         mysqli_stmt_execute($stmt_update);
     
