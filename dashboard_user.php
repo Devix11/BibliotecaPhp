@@ -79,7 +79,7 @@
         
         // Eseguo la dichiarazione
         if (mysqli_stmt_execute($stmt)) {
-            alert("Utente eliminato con successo");
+            echo "<script type='text/javascript'>alert('Utente eliminato con successo');</script>";
         } else {
             // Gestisco gli errori dell'esecuzione
             echo "<br><h3 style='color:Tomato;'>Error executing statement: ". mysqli_stmt_error($stmt) . "</h3>";
@@ -99,31 +99,63 @@
 
     // Mostra i libri disponibili
     function displayBooks(){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+            die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per mostrare tutti i libri attualmente in prestito
         $result = mysqli_query($db, "SELECT * FROM libri WHERE disponibilita < 1");
+        echo($result);
+        $db -> close();
     }
 
     // Cerca libri per nome
     function searchBooksByName($name){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+           die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per cercare i libri per nome
         $result = mysqli_query($db, "SELECT * FROM libri WHERE nome='" . $name . "'");
-        return $result;
+        echo($result);
+        $db -> close();
     }
 
     // Cerca libri per autore
     function searchBooksByAuthor($author){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+           die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per cercare i libri per autore
         $result = mysqli_query($db, "SELECT * FROM libri WHERE autore='" . $author . "'");
+        echo($result);
+        $db -> close();
     }
 
     // Cerca libri per categoria
     function searchBooksByCategory($category){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+           die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per cercare i libri per categoria
         $result = mysqli_query($db, "SELECT * FROM libri WHERE categoria='" . $category . "'");
+        echo($result);
+        $db -> close();
     }
 
     // Prendi in prestito un libro
     function borrowBook($bookId){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+           die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per prendere in prestito un libro
         $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
         $row = mysqli_fetch_array($result);
@@ -133,6 +165,11 @@
 
     // Restituisci un libro e lascia una recensione
     function returnBookAndReview($bookId, $review){
+        $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
+        // Verifica se la connessione è attiva
+        if (mysqli_connect_error()) {
+           die("Errore nella connessione al database: " . mysqli_connect_error());
+        }
         // Funzione per restituire un libro e lasciare una recensione
         $result = mysqli_query($db, "SELECT * FROM libri WHERE id='" . $bookId . "'");
         $row = mysqli_fetch_array($result);
