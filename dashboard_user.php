@@ -107,7 +107,7 @@
     function searchBooksByName($name){
         // Funzione per cercare i libri per nome
         $result = mysqli_query($db, "SELECT * FROM libri WHERE nome='" . $name . "'");
-        echo $result;
+        return $result;
     }
 
     // Cerca libri per autore
@@ -188,6 +188,7 @@
         <form action="dashboard_user.php" class="searchByAuthor" method="post">
             <input type="text" name="searchByAuthor" placeholder="Inserisci il nome dell'autore">
             <input type="submit" name="searchBooksByAuthor" value="Cerca libri per autore">
+            <?php echo $return?>
         </form>
 
         <!-- Pulsante per cercare libri per categoria -->
