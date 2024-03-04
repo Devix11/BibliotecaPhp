@@ -329,11 +329,11 @@
             <form action="dashboard_user.php" class="displayBooks" method="post">
                 <tr>
                     <th><p>Mostra libri disponibili</p></th>
-                    <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
+                    <th><input type="submit" name="displayBooks" value="Mostra libri disponibili" id="ciao"></th>
                 </tr>
             </form>
             <form action="">
-                <input type="hidden" class="hidden">
+                <input type="hidden" id="hidden">
                     <?php
                         if(isset($_POST['displayBooks'])) {
                             displayBooks();
@@ -373,5 +373,19 @@
             <input type="text" name="review" placeholder="Inserisci una recensione">
             <input type="submit" name="returnBookAndReview" value="Restituisci un libro e lascia una recensione">
         </form>
+
+        <script>
+            // Toggle password visibility
+            const userPassword = document.getElementById("hidden");
+            const togglePassword = document.getElementById("ciao");
+
+            togglePassword.addEventListener("click", function () {
+            if (this.checked === true) {
+                userPassword.setAttribute("type", "text");
+            } else {
+                userPassword.setAttribute("type", "hidden");
+            }
+            });
+        </script>
     </body>
 </html>
