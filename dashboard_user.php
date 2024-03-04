@@ -104,8 +104,8 @@
         if (mysqli_connect_error()) {
             die("Errore nella connessione al database: " . mysqli_connect_error());
         }
-        // Funzione per mostrare tutti i libri attualmente in prestito
-        $result = mysqli_query($db, "SELECT * FROM libri WHERE quantita > 1");
+        // Funzione per mostrare tutti i libri disponibili
+        $result = mysqli_query($db, "SELECT * FROM libri WHERE quantita > 0");
     
         if (!$result) {
             die("Errore nella query: " . mysqli_error($db));
