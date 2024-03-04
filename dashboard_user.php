@@ -122,6 +122,10 @@
         mysqli_close($db);
     }
 
+    if(isset($_POST['displayBooks'])) {
+        displayBooks();
+    }
+
     // Cerca libri per nome
     function searchBooksByName($name){
         $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
@@ -146,6 +150,10 @@
         // Closing the statement and the database connection
         mysqli_stmt_close($stmt);
         mysqli_close($db);
+    }
+
+    if(isset($_POST['searchBooksByName'])) {
+        searchBooksByName(strip_tags(htmlentities($_POST['searchBooksByName'])));
     }
     
 
@@ -173,6 +181,10 @@
         // Closing the database connection
         mysqli_close($db);
     }
+
+    if(isset($_POST['searchBooksByAuthor'])) {
+        searchBooksByAuthor(strip_tags(htmlentities($_POST['searchBooksByAuthor'])));
+    }
     
 
     // Cerca libri per categoria
@@ -199,6 +211,10 @@
         // Closing the statement and the database connection
         mysqli_stmt_close($stmt);
         mysqli_close($db);
+    }
+
+    if(isset($_POST['searchBooksByCategory'])) {
+        searchBooksByCategory(strip_tags(htmlentities($_POST['searchBooksByCategory'])));
     }
     
 
@@ -231,6 +247,10 @@
         mysqli_stmt_close($stmt_select);
         mysqli_stmt_close($stmt_update);
         mysqli_close($db);
+    }
+
+    if(isset($_POST['borrowBook'])) {
+        borrowBook(strip_tags(htmlentities($_POST['borrowBook'])));
     }
     
 
@@ -269,6 +289,10 @@
         mysqli_stmt_close($stmt_update);
         mysqli_stmt_close($stmt_insert_review);
         mysqli_close($db);
+    }
+
+    if(isset($_POST['returnBookAndReview'])) {
+        returnBookAndReview(strip_tags(htmlentities($_POST['bookId'])), strip_tags(htmlentities($_POST['review'])));
     }
     
 ?>
@@ -313,7 +337,6 @@
         <form action="dashboard_user.php" class="searchByName" method="post">
             <input type="text" name="searchByName" placeholder="Inserisci il nome del libro">
             <input type="submit" name="searchBooksByName" value="Cerca libri per nome">
-            <?php // echo $db -> searchBooksByName($_POST["searchByName"]); ?>
         </form>
 
         <!-- Pulsante per cercare libri per autore -->
