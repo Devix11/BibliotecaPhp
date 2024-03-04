@@ -332,11 +332,15 @@
                     <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
                 </tr>
             </form>
-            <?php
-              if(!empty($_POST['displayBooks'])) {
-                displayBooks();
-            }
-            ?>
+            <form action="">
+                <input type="hidden" class="hidden">
+                    <?php
+                        if(isset($_POST['displayBooks'])) {
+                            displayBooks();
+                        }
+                    ?>
+                </input>
+            </form>
         </table>
 
         <!-- Pulsante per cercare libri per nome -->
