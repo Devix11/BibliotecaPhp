@@ -182,7 +182,7 @@
         <form action="dashboard_user.php" class="searchByName" method="post">
             <input type="text" name="searchByName" placeholder="Inserisci il nome del libro">
             <input type="submit" name="searchBooksByName" value="Cerca libri per nome">
-            <?php echo searchBooksByName($_POST["searchByName"]); ?>
+            <?php echo $db -> searchBooksByName($_POST["searchByName"]); ?>
         </form>
 
         <!-- Pulsante per cercare libri per autore -->
