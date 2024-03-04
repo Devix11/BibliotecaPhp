@@ -107,7 +107,7 @@
     function searchBooksByName($name){
         // Funzione per cercare i libri per nome
         $result = mysqli_query($db, "SELECT * FROM libri WHERE nome='" . $name . "'");
-        return $result;
+        echo $result;
     }
 
     // Cerca libri per autore
