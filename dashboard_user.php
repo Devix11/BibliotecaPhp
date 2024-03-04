@@ -332,7 +332,7 @@
                     <th><input type="submit" name="displayBooks" value="Mostra libri disponibili" id="ciao"></th>
                 </tr>
             </form>
-            <form action="">
+            <form action="#">
                 <input type="hidden" id="hidden">
                     <?php
                         if(isset($_POST['displayBooks'])) {
