@@ -6,7 +6,7 @@
     // Fine: ed8c6549bwf9
     // FILEPATH: /dashboard_user.php
     // Stabilisco la connessione col database
-    //$_POST = array();
+    $_POST = array();
     $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
     // Verifica se la connessione è attiva
     if (mysqli_connect_error()) {
