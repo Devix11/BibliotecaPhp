@@ -6,6 +6,7 @@
     // Fine: ed8c6549bwf9
     // FILEPATH: /dashboard_user.php
     // Stabilisco la connessione col database
+    $_POST = array();
     $db = mysqli_connect('localhost', 'phpmyadmin', 'ciaone11', 'biblioteca');
     // Verifica se la connessione è attiva
     if (mysqli_connect_error()) {
@@ -122,9 +123,9 @@
         mysqli_close($db);
     }
 
-   // if(isset($_POST['displayBooks'])) {
-     //   displayBooks();
-    //}
+    if(isset($_POST['displayBooks'])) {
+        displayBooks();
+    }
 
     // Cerca libri per nome
     function searchBooksByName($name){
@@ -331,11 +332,6 @@
                     <th><input type="submit" name="displayBooks" value="Mostra libri disponibili"></th>
                 </tr>
             </form>
-            <?php 
-            if(isset($_POST['displayBooks'])) {
-            displayBooks();
-            }
-        ?>
         </table>
 
         <!-- Pulsante per cercare libri per nome -->
